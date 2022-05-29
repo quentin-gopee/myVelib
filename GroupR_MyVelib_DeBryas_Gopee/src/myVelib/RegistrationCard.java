@@ -12,12 +12,17 @@ public abstract class RegistrationCard {
 	 * @param mb mechanical bicycle used for the ride
 	 * @return the cost of the ride
 	 */
-	abstract int visit(MechanicalBicycle mb);
+	abstract double visit(MechanicalBicycle mb);
 	
 	/**
 	 * visitor function
 	 * @param mb electrical bicycle used for the ride
 	 * @return the cost of the ride
 	 */
-	abstract int visit(ElectricalBicycle eb);
+	abstract double visit(ElectricalBicycle eb);
+	
+	/**
+	 * add 5 minutes to time balance
+	 */
+	public abstract void stationPlus();
 }
