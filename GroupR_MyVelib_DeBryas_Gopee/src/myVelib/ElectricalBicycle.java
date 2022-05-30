@@ -7,7 +7,7 @@ import java.util.*;
  * @author Quentin
  *
  */
-public class ElectricalBicycle extends Bicycle {
+public class ElectricalBicycle implements Bicycle {
 	
 	/**
 	 * Unique id for the bicycle

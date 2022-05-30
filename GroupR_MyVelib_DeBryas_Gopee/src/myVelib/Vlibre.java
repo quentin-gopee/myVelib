@@ -6,7 +6,7 @@ import java.util.*;
  * @author Quentin
  *
  */
-public class Vlibre extends RegistrationCard{
+public class Vlibre implements RegistrationCard{
 	
 	/**
 	 * Unique ID
@@ -33,7 +33,7 @@ public class Vlibre extends RegistrationCard{
 	 * @param mb mechanical bicycle used for the ride
 	 * @return the cost of the ride (0€ for the 1st hour then 1€ per hour)
 	 */
-	double visit(MechanicalBicycle mb) {
+	public double visit(MechanicalBicycle mb) {
 		if (mb.getCurrentRideTime()>60) {
 			if (this.timeBalance > mb.getCurrentRideTime()-60) {this.timeBalance -= mb.getCurrentRideTime();}
 			else {
@@ -50,7 +50,7 @@ public class Vlibre extends RegistrationCard{
 	 * @param mb electrical bicycle used for the ride
 	 * @return the cost of the ride (1€ for the 1st hour then 2€ per hour)
 	 */
-	double visit(ElectricalBicycle eb) {
+	public double visit(ElectricalBicycle eb) {
 		if (this.timeBalance > eb.getCurrentRideTime()) {
 			this.timeBalance -= eb.getCurrentRideTime();
 			return 0;

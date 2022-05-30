@@ -6,23 +6,23 @@ package myVelib;
  * @author Quentin
  *
  */
-public abstract class RegistrationCard {
+public interface RegistrationCard {
 	/**
 	 * visitor function
 	 * @param mb mechanical bicycle used for the ride
 	 * @return the cost of the ride
 	 */
-	abstract double visit(MechanicalBicycle mb);
+	public double visit(MechanicalBicycle mb);
 	
 	/**
 	 * visitor function
 	 * @param mb electrical bicycle used for the ride
 	 * @return the cost of the ride
 	 */
-	abstract double visit(ElectricalBicycle eb);
+	public double visit(ElectricalBicycle eb);
 	
 	/**
 	 * add 5 minutes to time balance
 	 */
-	public abstract void stationPlus();
+	public void stationPlus();
 }

@@ -5,7 +5,7 @@ package myVelib;
  * @author Quentin
  *
  */
-public class NoCard extends RegistrationCard{
+public class NoCard implements RegistrationCard{
 	
 	public NoCard() {}
 	
@@ -15,7 +15,7 @@ public class NoCard extends RegistrationCard{
 	 * @param mb mechanical bicycle used for the ride
 	 * @return the cost of the ride (1€ per hour)
 	 */
-	double visit(MechanicalBicycle mb) {
+	public double visit(MechanicalBicycle mb) {
 		return (double) mb.getCurrentRideTime()/60;
 	}
 
@@ -25,7 +25,7 @@ public class NoCard extends RegistrationCard{
 	 * @param mb electrical bicycle used for the ride
 	 * @return the cost of the ride (2€ per hour)
 	 */
-	double visit(ElectricalBicycle eb) {
+	public double visit(ElectricalBicycle eb) {
 		return (double) 2*eb.getCurrentRideTime()/60;
 	}
 

@@ -9,53 +9,53 @@ import java.util.UUID;
  * @author Quentin
  *
  */
-public abstract class Bicycle {
+public interface Bicycle {
 	/**
 	 * visitable function
 	 * @param rc the registration card used for the ride (visitor)
 	 * @return the cost of the ride
 	 */
-	public abstract double accept(RegistrationCard rc);
+	public double accept(RegistrationCard rc);
 	
 	/**
 	 * getter for ID
 	 * @return the id of the bicycle
 	 */
-	public abstract UUID getID();
+	public UUID getID();
 	
 	/**
 	 * setter for ID
 	 * @param iD the new id
 	 */
-	public abstract void setID(UUID iD);
+	public void setID(UUID iD);
 	
 	/**
 	 * getter for currentRideTime
 	 * @return the time of the current ride
 	 */
-	public abstract int getCurrentRideTime();
+	public int getCurrentRideTime();
 	
 	/**
 	 * setter for currentRideTime
 	 * @param currentRideTime the time of the ride
 	 */
-	public abstract void setCurrentRideTime(int currentRideTime);
+	public void setCurrentRideTime(int currentRideTime);
 	
 	/**
 	 * getter for histories
 	 * @return the history of the bicycle
 	 */
-	public abstract ArrayList<History> getHistories();
+	public ArrayList<History> getHistories();
 	
 	/**
 	 * setter for histories
 	 * @param histories the new history
 	 */
-	public abstract void setHistories(ArrayList<History> histories);
+	public void setHistories(ArrayList<History> histories);
 	
 	/**
 	 * add a history to the list of histories
 	 * @param h the history to add
 	 */
-	public abstract void addHistory(History h);
+	public void addHistory(History h);
 }
