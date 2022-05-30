@@ -5,4 +5,4 @@ package myVelib;
  * @author jehandebryas
  *
  */
-public enum BikeType {Mechanical, Electrical}
+public enum BicycleType {Mechanical, Electrical}

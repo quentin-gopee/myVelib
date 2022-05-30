@@ -1,6 +1,7 @@
 package myVelib;
 import java.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Map;
 import java.util.UUID;
 
@@ -14,10 +15,11 @@ import java.util.UUID;
 public class Plan {
 	private ParkingSlot startParkingSlot;
 	private ParkingSlot endParkingSlot;
+	private boolean goToBike;
 	private MyVelib myVelib;
 	
 	public Plan(MyVelib myVelib) {
-		this.myVelib= myVelib;
+		this.myVelib = myVelib;
 	}
 
 	public ParkingSlot getStartParkingSlot() {
@@ -36,7 +38,7 @@ public class Plan {
 		this.endParkingSlot = endParkingSlot;
 	}
 	
-	public void PlanifyClassic(Location start, Location end){
+	public void PlanifyClassic(Location start, Location end, BicycleType type){
 		
 		/**
 		 * cheking that location start and location end are valid
@@ -77,10 +79,47 @@ public class Plan {
 		// looking for a start parking slot & station
 		
 		//import stations
-		Map<UUID,Station> stations = myVelib.getStations();
+		Map<UUID,Station> stationsMap = myVelib.getStations();
+		ArrayList <Station> stationsList = new ArrayList<Station>(stationsMap.values());
+		
 		//compare stations in term of distance from 
-		//DistanceStationComparator comparator = new DistanceStationComparator(start); 
+		DistanceStationComparator comparator = new DistanceStationComparator(start); 
+		Collections.sort(stationsList,comparator);
+		
+		for(Station s : stationsList) {
+			for(ParkingSlot pS : s.getParkingSlots()) {
+				if(pS.getState()== ParkingSlotState.Bicycle && pS.getBicycle().getBicycleType()== type) {
+					this.startParkingSlot = pS;
+					break outerloop;
+				}
+			}
+		}
 		
 		// looking for end parking slot & station
+		
+		DistanceStationComparator comparator = new DistanceStationComparator(end); 
+		Collections.sort(stationsList,comparator);
+		
+		for(Station s : stationsList) {
+			for(ParkingSlot pS : s.getParkingSlots()) {
+				if(pS.getState()== ParkingSlotState.FreeToUse) {
+					this.endParkingSlot = pS;
+					break outerloop;
+				}
+			}
+		}
+		
+		//cheking that it is interesting to really using this bike instead of walking
+		
+		double walkingDistance = start.distance(end);
+		double bikeWalkingDistance = start.distance(startParkingSlot.getStation().getLocation()) + 
+				end.distance(endParkingSlot.getStation().getLocation());
+		
+		if(walkingDistance <= bikeWalkingDistance) {
+			System.out.println("it is not interesting to take a bike for the user");
+			this.goToBike = false;
+		}else {this.goToBike=true;}
+		
+		
 	}
 }

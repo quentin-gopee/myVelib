@@ -24,6 +24,8 @@ public class ElectricalBicycle implements Bicycle {
 	 */
 	private ArrayList<History> histories;
 	
+	private static BicycleType type = BicycleType.Electrical;
+	
 	/**
 	 * creates a mechanical bicycle
 	 * @param ID the id of the bicycle
@@ -103,6 +105,14 @@ public class ElectricalBicycle implements Bicycle {
 	 */
 	public void addHistory(History h) {
 		this.histories.add(h);
+	}
+
+	public BicycleType getType() {
+		return type;
+	}
+
+	public void setType(BicycleType type) {
+		this.type = type;
 	}
 }
 
