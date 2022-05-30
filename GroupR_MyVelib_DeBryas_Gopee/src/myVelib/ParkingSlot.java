@@ -1,18 +1,40 @@
 package myVelib;
 import java.util.*;
 
+/**
+ * ParkingSlot is a Class that represents every parking slot of all stations
+ * @author jehandebryas
+ *
+ */
+
 public class ParkingSlot {
-	Station station;
-	UUID ID;
-	String state;
-	ArrayList<ParkingSlotHistory> parkingSlotHistories;
 	
-	public ParkingSlot(Station station, UUID ID, String state) {
+	/**
+	 * elements of the ParkingSlot Class
+	 */
+	private Station station;
+	private UUID ID;
+	private ParkingSlotState state;
+	private ArrayList<ParkingSlotHistory> parkingSlotHistories;
+	private Bicycle bicycle;
+	
+	
+	/**
+	 * initializer of the ParkingSlotclass
+	 * @param station
+	 * @param ID
+	 * @param state
+	 */
+	public ParkingSlot(Station station, UUID ID, ParkingSlotState state) {
 		this.station = station;
 		this.ID = ID;
 		this.state = state;
 	}
-
+	
+	/**
+	 * getter & setters
+	 * @return
+	 */
 	public Station getStation() {
 		return station;
 	}
@@ -29,11 +51,11 @@ public class ParkingSlot {
 		ID = iD;
 	}
 
-	public String getState() {
+	public ParkingSlotState getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(ParkingSlotState state) {
 		this.state = state;
 	}
 
@@ -44,4 +66,13 @@ public class ParkingSlot {
 	public void setParkingSlotHistories(ArrayList<ParkingSlotHistory> parkingSlotHistories) {
 		this.parkingSlotHistories = parkingSlotHistories;
 	}
+
+	public Bicycle getBicycle() {
+		return bicycle;
+	}
+
+	public void setBicycle(Bicycle bicycle) {
+		this.bicycle = bicycle;
+	}
 }
+	

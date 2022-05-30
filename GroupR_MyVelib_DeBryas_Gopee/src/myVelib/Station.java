@@ -1,14 +1,33 @@
 package myVelib;
 import java.util.*;
 
+/**
+ * Station is a class that represent a station
+ * @author jehandebryas
+ *
+ */
+
 public class Station {
-	UUID ID;
-	Location location;
-	String type;
-	boolean online;
-	ArrayList<ParkingSlot> parkingSlots;
 	
-	public Station(UUID ID, Location location, String type, boolean online, ArrayList<ParkingSlot> parkingSlots) {
+	/** 
+	 * elements of a station object
+	 */
+	private UUID ID;
+	private Location location;
+	private StationType type;
+	private boolean online;
+	private ArrayList<ParkingSlot> parkingSlots;
+	
+	
+	/**
+	 * initializer
+	 * @param ID
+	 * @param location
+	 * @param type
+	 * @param online
+	 * @param parkingSlots
+	 */
+	public Station(UUID ID, Location location, StationType type, boolean online, ArrayList<ParkingSlot> parkingSlots) {
 		this.ID = ID;
 		this.location = location;
 		this.type = type;
@@ -16,6 +35,11 @@ public class Station {
 		this.parkingSlots = parkingSlots;
 	}
 
+	
+	/**
+	 * getters & setters
+	 * @return
+	 */
 	public UUID getID() {
 		return ID;
 	}
@@ -32,11 +56,11 @@ public class Station {
 		this.location = location;
 	}
 
-	public String getType() {
+	public StationType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(StationType type) {
 		this.type = type;
 	}
 
