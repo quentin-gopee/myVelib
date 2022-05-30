@@ -79,7 +79,7 @@ public class Plan {
 		//import stations
 		Map<UUID,Station> stations = myVelib.getStations();
 		//compare stations in term of distance from 
-		DistanceStationComparator comparator = new DistanceStationComparator(start); 
+		//DistanceStationComparator comparator = new DistanceStationComparator(start); 
 		
 		// looking for end parking slot & station
 	}
