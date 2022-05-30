@@ -1,17 +1,18 @@
 package myVelib;
 
 import static org.junit.jupiter.api.Assertions.*;
-import java.util.*;
+
+import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
-class VlibreTest {
-	
+class VmaxTest {
+
 	@Test
 	void testVisitMechanicalBicycle() {
 		Bicycle b = new MechanicalBicycle();
-		RegistrationCard rc = new Vlibre(UUID.randomUUID());
-		((Vlibre)rc).setTimeBalance(30);
+		RegistrationCard rc = new Vmax(UUID.randomUUID());
+		((Vmax)rc).setTimeBalance(30);
 		b.setCurrentRideTime(120);
 		assertTrue(rc.visit((MechanicalBicycle) b) == 0.5);
 	}
@@ -19,17 +20,18 @@ class VlibreTest {
 	@Test
 	void testVisitElectricalBicycle() {
 		Bicycle b = new ElectricalBicycle();
-		RegistrationCard rc = new Vlibre(UUID.randomUUID());
-		((Vlibre)rc).setTimeBalance(30);
+		RegistrationCard rc = new Vmax(UUID.randomUUID());
+		((Vmax)rc).setTimeBalance(30);
 		b.setCurrentRideTime(120);
-		assertTrue(rc.visit((ElectricalBicycle) b) == 2);
+		assertTrue(rc.visit((ElectricalBicycle) b) == 0.5);
 	}
 
 	@Test
 	void testStationPlus() {
-		RegistrationCard rc = new Vlibre(UUID.randomUUID());
+		RegistrationCard rc = new Vmax(UUID.randomUUID());
 		rc.stationPlus();
-		assertTrue(((Vlibre) rc).getTimeBalance() == 5);
+		assertTrue(((Vmax) rc).getTimeBalance() == 5);
 	}
+
 
 }

@@ -37,8 +37,9 @@ public class Vlibre implements RegistrationCard{
 		if (mb.getCurrentRideTime()>60) {
 			if (this.timeBalance > mb.getCurrentRideTime()-60) {this.timeBalance -= mb.getCurrentRideTime();}
 			else {
+				int time = mb.getCurrentRideTime()-60-this.timeBalance;
 				this.timeBalance = 0;
-				return (double) (mb.getCurrentRideTime()-60-this.timeBalance)/60;
+				return (double) time/60;
 			}
 		}
 		return 0;
