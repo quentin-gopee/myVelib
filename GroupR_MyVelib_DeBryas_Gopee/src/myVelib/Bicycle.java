@@ -58,4 +58,7 @@ public interface Bicycle {
 	 * @param h the history to add
 	 */
 	public void addHistory(History h);
+	
+	public BicycleType getBicycleType();
+	
 }
