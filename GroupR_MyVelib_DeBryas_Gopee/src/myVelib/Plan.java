@@ -7,7 +7,8 @@ import java.util.UUID;
 
 /**
  * a class that regroups all methods to compute plan for each ride.
- * i.e. start and end parking slots, stations, etc. 
+ * i.e. start and end parking slots, stations, etc.
+ *  
  * @author jehandebryas
  *
  */
@@ -38,7 +39,7 @@ public class Plan {
 		this.endParkingSlot = endParkingSlot;
 	}
 	
-	public void PlanifyClassic(Location start, Location end, BicycleType type){
+	public void ClassicPlan(Location start, Location end, BicycleType type){
 		
 		/**
 		 * cheking that location start and location end are valid
@@ -76,35 +77,46 @@ public class Plan {
 			return;
 		}
 		
-		// looking for a start parking slot & station
+		/**
+		 * looking for a start parking slot & station
+		 */
 		
 		//import stations
 		Map<UUID,Station> stationsMap = myVelib.getStations();
 		ArrayList <Station> stationsList = new ArrayList<Station>(stationsMap.values());
 		
-		//compare stations in term of distance from 
+		//compare stations in term of distance from starting point
+		
 		DistanceStationComparator comparator = new DistanceStationComparator(start); 
 		Collections.sort(stationsList,comparator);
 		
+		
+		labelStart:
 		for(Station s : stationsList) {
 			for(ParkingSlot pS : s.getParkingSlots()) {
-				if(pS.getState()== ParkingSlotState.Bicycle && pS.getBicycle().getBicycleType()== type) {
+				if(pS.getState()== ParkingSlotState.Bicycle && pS.getBicycle().getBicycleType() == type) {
 					this.startParkingSlot = pS;
-					break outerloop;
+					break labelStart;
 				}
 			}
 		}
 		
-		// looking for end parking slot & station
 		
-		DistanceStationComparator comparator = new DistanceStationComparator(end); 
-		Collections.sort(stationsList,comparator);
+		/**
+		 * looking for end parking slot & station
+		 */
 		
+		//compare stations in term of distance from ending point
+		
+		DistanceStationComparator comparator2 = new DistanceStationComparator(end); 
+		Collections.sort(stationsList,comparator2);
+		
+		labelEnd:
 		for(Station s : stationsList) {
 			for(ParkingSlot pS : s.getParkingSlots()) {
 				if(pS.getState()== ParkingSlotState.FreeToUse) {
 					this.endParkingSlot = pS;
-					break outerloop;
+					break labelEnd;
 				}
 			}
 		}
@@ -118,6 +130,9 @@ public class Plan {
 		if(walkingDistance <= bikeWalkingDistance) {
 			System.out.println("it is not interesting to take a bike for the user");
 			this.goToBike = false;
+		}if(startParkingSlot==null || endParkingSlot==null) {
+			this.goToBike = false;
+			System.out.println("no bike is available");
 		}else {this.goToBike=true;}
 		
 		

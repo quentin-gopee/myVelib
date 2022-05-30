@@ -106,6 +106,9 @@ public class Ride extends History{
 		this.bicycle = bicycle;
 	}
 	
+	/**
+	 * function for ending a ride
+	 */
 	public void endRide() {
 		int time = (int) ((super.getEndingTime().getTime() - super.getStartingTime().getTime())/ (1000 * 60))
         % 60;
@@ -117,8 +120,11 @@ public class Ride extends History{
 		} else if (bicycle instanceof ElectricalBicycle) {
 			this.cost = ((ElectricalBicycle) bicycle).accept(user.getRegistrationCard());
 		}
+		
+		
 		user.getCreditCard().setBalance(user.getCreditCard().getBalance() - cost);
 		bicycle.addHistory(this);
+		user.addRide(this);
 	}
 	
 }

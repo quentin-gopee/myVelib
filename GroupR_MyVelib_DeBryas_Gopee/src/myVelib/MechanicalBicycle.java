@@ -115,5 +115,12 @@ public class MechanicalBicycle implements Bicycle {
 	public static void setType(BicycleType type) {
 		MechanicalBicycle.type = type;
 	}
+
+	@Override
+	public BicycleType getBicycleType() {
+		return type;
+	}
+	
+
 }
 

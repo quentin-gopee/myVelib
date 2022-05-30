@@ -30,6 +30,13 @@ public interface Bicycle {
 	public void setID(UUID iD);
 	
 	/**
+	 * getter for the type of the bicycle
+	 * @return
+	 */
+	public BicycleType getBicycleType();
+
+	
+	/**
 	 * getter for currentRideTime
 	 * @return the time of the current ride
 	 */
@@ -58,7 +65,5 @@ public interface Bicycle {
 	 * @param h the history to add
 	 */
 	public void addHistory(History h);
-	
-	public BicycleType getBicycleType();
-	
+		
 }

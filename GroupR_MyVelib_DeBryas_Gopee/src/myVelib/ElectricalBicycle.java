@@ -107,12 +107,10 @@ public class ElectricalBicycle implements Bicycle {
 		this.histories.add(h);
 	}
 
-	public BicycleType getType() {
+	@Override
+	public BicycleType getBicycleType() {
 		return type;
-	}
+		}
 
-	public void setType(BicycleType type) {
-		this.type = type;
-	}
 }
 
