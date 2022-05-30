@@ -39,10 +39,10 @@ public class Ride extends History{
 	 * @param user the user of the ride
 	 * @param bicycle the bicycle used in the ride
 	 */
-	public Ride(Plan plan, User user, Bicycle bicycle, int time) {
+	public Ride(Plan plan, User user, int time) {
 		this.plan = plan;
 		this.user = user;
-		this.bicycle = bicycle;
+		this.bicycle = plan.getStartParkingSlot().getBicycle();
 		this.time = time;
 	}
 	
@@ -126,16 +126,16 @@ public class Ride extends History{
 		this.bicycle = bicycle;
 	}
 	
-	public void computeCost() {
-		bicycle.setCurrentRideTime(time);
-		if (this.plan.getEndParkingSlot().getStation().getType() == "Plus")
+	public void endRide() {
+		bicycle.setCurrentRideTime(time); //time of the ride
+		if (this.plan.getEndParkingSlot().getStation().getType() == StationType.Plus)
 			user.getRegistrationCard().stationPlus();
 		if (bicycle instanceof MechanicalBicycle) {
 			this.cost = ((MechanicalBicycle) bicycle).accept(user.getRegistrationCard());
 		} else if (bicycle instanceof ElectricalBicycle) {
 			this.cost = ((ElectricalBicycle) bicycle).accept(user.getRegistrationCard());
 		}
-		// Add last operations (like debit on the creditcard)
+		user.getCreditCard().setBalance(user.getCreditCard().getBalance() - cost);
 	}
 	
 }

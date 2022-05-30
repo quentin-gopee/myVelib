@@ -38,7 +38,7 @@ public class Vlibre implements RegistrationCard{
 			if (this.timeBalance > mb.getCurrentRideTime()-60) {this.timeBalance -= mb.getCurrentRideTime();}
 			else {
 				this.timeBalance = 0;
-				return (mb.getCurrentRideTime()-60-this.timeBalance)/60;
+				return (double) (mb.getCurrentRideTime()-60-this.timeBalance)/60;
 			}
 		}
 		return 0;
@@ -58,8 +58,8 @@ public class Vlibre implements RegistrationCard{
 			int time = eb.getCurrentRideTime() - this.timeBalance;
 			this.timeBalance = 0;
 			if (time>60)
-				return 2*(time-60)/60 + 60;
-			return eb.getCurrentRideTime();
+				return (double) 2*(time-60)/60 + 1;
+			return time/60;
 		}
 	}
 	
