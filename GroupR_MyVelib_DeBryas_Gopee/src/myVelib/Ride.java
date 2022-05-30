@@ -1,4 +1,5 @@
 package myVelib;
+import java.util.*;
 
 /**
  * Contains all the information about a ride
@@ -29,37 +30,16 @@ public class Ride extends History{
 	private Bicycle bicycle;
 	
 	/**
-	 * time of the ride
-	 */
-	private int time;
-	
-	/**
 	 * Creates a ride
 	 * @param plan the plan of the ride
 	 * @param user the user of the ride
 	 * @param bicycle the bicycle used in the ride
 	 */
-	public Ride(Plan plan, User user, int time) {
+	public Ride(Plan plan, User user, Date startingTime, Date endingTime) {
+		super(startingTime, endingTime);
 		this.plan = plan;
 		this.user = user;
 		this.bicycle = plan.getStartParkingSlot().getBicycle();
-		this.time = time;
-	}
-	
-	/**
-	 * getter for time
-	 * @return time
-	 */
-	public int getTime() {
-		return time;
-	}
-	
-	/**
-	 * setter for time
-	 * @param time the new time
-	 */
-	public void setTime(int time) {
-		this.time = time;
 	}
 
 	/**
@@ -127,6 +107,8 @@ public class Ride extends History{
 	}
 	
 	public void endRide() {
+		int time = (int) ((super.getEndingTime().getTime() - super.getStartingTime().getTime())/ (1000 * 60))
+        % 60;
 		bicycle.setCurrentRideTime(time); //time of the ride
 		if (this.plan.getEndParkingSlot().getStation().getType() == StationType.Plus)
 			user.getRegistrationCard().stationPlus();
@@ -136,6 +118,7 @@ public class Ride extends History{
 			this.cost = ((ElectricalBicycle) bicycle).accept(user.getRegistrationCard());
 		}
 		user.getCreditCard().setBalance(user.getCreditCard().getBalance() - cost);
+		bicycle.addHistory(this);
 	}
 	
 }

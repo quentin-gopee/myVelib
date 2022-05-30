@@ -1,6 +1,6 @@
 package myVelib;
 
-import java.util.Date;
+import java.util.*;
 
 /**
  * class used to register in the system each evants that happens in the myvelib system.
