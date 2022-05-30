@@ -1,5 +1,7 @@
 package myVelib;
 
+import java.util.Date;
+
 /**
  * class for an history of a parking slot
  * @author jehandebryas
@@ -18,8 +20,8 @@ public class ParkingSlotHistory extends History {
 	 * @param parkingSlot
 	 * @param bicycle
 	 */
-	public ParkingSlotHistory(ParkingSlotState state, ParkingSlot parkingSlot, Bicycle bicycle) {
-		super();
+	public ParkingSlotHistory(ParkingSlotState state, ParkingSlot parkingSlot, Bicycle bicycle, Date startingTime, Date endingTime) {
+		super(startingTime, endingTime);
 		this.state = state;
 		this.parkingSlot = parkingSlot;
 		this.bicycle = bicycle;
