@@ -39,42 +39,34 @@ public class Plan {
 		this.endParkingSlot = endParkingSlot;
 	}
 	
-	public void ClassicPlan(Location start, Location end, BicycleType type){
+	public void ClassicPlan(Location start, Location end, BicycleType type) throws Exception {
 		
 		/**
 		 * cheking that location start and location end are valid
 		 */
 		if(start.getX()> myVelib.getSide()) {
-			System.out.println("location out of the map !");
-			return;
+			throw new Exception("location out of the map !");
 		}
 		if(start.getY()> myVelib.getSide()) {
-			System.out.println("location out of the map !");
-			return;
+			throw new Exception("location out of the map !");
 		}
 		if(end.getX()> myVelib.getSide()) {
-			System.out.println("location out of the map !");
-			return;
+			throw new Exception("location out of the map !");
 		}
 		if(end.getY()> myVelib.getSide()) {
-			System.out.println("location out of the map !");
-			return;
+			throw new Exception("location out of the map !");
 		}
 		if(start.getX()< 0) {
-			System.out.println("location out of the map !");
-			return;
+			throw new Exception("location out of the map !");
 		}
 		if(start.getY()< 0) {
-			System.out.println("location out of the map !");
-			return;
+			throw new Exception("location out of the map !");
 		}
 		if(end.getX()< 0) {
-			System.out.println("location out of the map !");
-			return;
+			throw new Exception("location out of the map !");
 		}
 		if(end.getY()< 0) {
-			System.out.println("location out of the map !");
-			return;
+			throw new Exception("location out of the map !");
 		}
 		
 		/**

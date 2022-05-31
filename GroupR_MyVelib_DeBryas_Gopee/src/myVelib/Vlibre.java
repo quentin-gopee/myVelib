@@ -19,6 +19,8 @@ public class Vlibre implements RegistrationCard{
 	 */
 	private int timeBalance=0;
 	
+	private int totalTimeCreditEarned;
+
 	/**
 	 * creates a Vlibre card
 	 * @param ID id of the card
@@ -96,6 +98,13 @@ public class Vlibre implements RegistrationCard{
 		this.timeBalance = timeBalance;
 	}
 	
+	public int getTotalTimeCreditEarned() {
+		return totalTimeCreditEarned;
+	}
+
+	public void setTotalTimeCreditEarned(int totalTimeCreditEarned) {
+		this.totalTimeCreditEarned = totalTimeCreditEarned;
+	}	
 	
 	@Override
 	/**
@@ -103,6 +112,7 @@ public class Vlibre implements RegistrationCard{
 	 */
 	public void stationPlus() {
 		this.timeBalance += 5;
+		this.totalTimeCreditEarned +=5;
 	}
 	
 }

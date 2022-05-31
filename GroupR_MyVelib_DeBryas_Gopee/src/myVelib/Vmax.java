@@ -19,6 +19,8 @@ public class Vmax implements RegistrationCard{
 	 */
 	private int timeBalance=0;
 	
+	private int totalTimeCreditEarned;
+	
 	/**
 	 * creates a Vmax card
 	 * @param ID id of the card
@@ -95,12 +97,21 @@ public class Vmax implements RegistrationCard{
 		this.timeBalance = timeBalance;
 	}
 	
+	public int getTotalTimeCreditEarned() {
+		return totalTimeCreditEarned;
+	}
+
+	public void setTotalTimeCreditEarned(int totalTimeCreditEarned) {
+		this.totalTimeCreditEarned = totalTimeCreditEarned;
+	}
+
 	@Override
 	/**
 	 * add 5 minutes to time balance
 	 */
 	public void stationPlus() {
 		this.timeBalance += 5;
+		this.totalTimeCreditEarned +=5;
 	}
 	
 }
