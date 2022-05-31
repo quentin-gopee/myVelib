@@ -151,8 +151,7 @@ public class Ride extends History{
 			super.setEndingTime(endingTime);
 			
 			// Calculate the time of the ride
-			int time = (int) ((super.getEndingTime().getTime() - super.getStartingTime().getTime())/ (1000 * 60))
-	        % 60;
+			int time = (int) ((super.getEndingTime().getTime() - super.getStartingTime().getTime())/ (1000 * 60));
 			bicycle.setCurrentRideTime(time);
 			
 			// If Station PLus, add free time

@@ -39,6 +39,22 @@ public class Plan {
 		this.endParkingSlot = endParkingSlot;
 	}
 	
+	public boolean isGoToBike() {
+		return goToBike;
+	}
+
+	public void setGoToBike(boolean goToBike) {
+		this.goToBike = goToBike;
+	}
+
+	public MyVelib getMyVelib() {
+		return myVelib;
+	}
+
+	public void setMyVelib(MyVelib myVelib) {
+		this.myVelib = myVelib;
+	}
+
 	public void ClassicPlan(Location start, Location end, BicycleType type) throws Exception {
 		
 		/**

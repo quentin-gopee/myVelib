@@ -8,14 +8,16 @@ import java.util.*;
  */
 
 public class User {
-	UUID ID;
-	String name;
-	Location location;
-	CreditCard creditCard;
-	RegistrationCard registrationCard;
-	ArrayList<Ride> rides;
-	double totalCharges;
-	Ride currentRide;
+	private UUID ID;
+	private String name;
+	private Location location;
+	private CreditCard creditCard;
+	private RegistrationCard registrationCard;
+	private ArrayList<Ride> rides;
+	private double totalCharges;
+	private Ride currentRide;
+	private MyVelib myVelib;
+	
 	
 	/**
 	 * initializer
@@ -25,7 +27,7 @@ public class User {
 	 * @param creditCard
 	 * @param registrationCard
 	 */
-	public User(UUID ID, String name, Location location, CreditCard creditCard, RegistrationCard registrationCard) {
+	public User(UUID ID, String name, Location location, CreditCard creditCard, RegistrationCard registrationCard, MyVelib myVelib) {
 		this.ID = ID;
 		this.name = name;
 		this.location = location;
@@ -34,6 +36,7 @@ public class User {
 		this.rides = new ArrayList<Ride>();
 		this.totalCharges = 0;
 		this.currentRide = null;
+		this.myVelib = myVelib;
 	}
 
 	
@@ -103,6 +106,15 @@ public class User {
 
 	public void setCurrentRide(Ride currentRide) {
 		this.currentRide = currentRide;
+	}
+	
+	public void planClassicRide(Location destination, BicycleType btype) throws Exception {
+		if (currentRide != null)
+			throw new Exception("A ride is already planned!");
+			
+		Plan plan = new Plan(myVelib);
+		plan.ClassicPlan(this.location, destination, btype);
+		currentRide = new Ride(plan, this);
 	}
 
 	/**
