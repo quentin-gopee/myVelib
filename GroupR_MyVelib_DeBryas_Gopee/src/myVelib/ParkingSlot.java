@@ -97,23 +97,19 @@ public class ParkingSlot {
 	 * @param parkingSlot
 	 * @param newDate is the date at which the bike is rent
 	 */
-	public boolean rentaBike(User user, Date newDate) {
+	public void rentaBike(User user, Date newDate) throws Exception {
 		
 		//check that parking slot is on this station, and available
 		
-		boolean done = false;
-		
-		
-		if(this.getBicycle() != null) {
-			//the bike is taken in the parkingslot 
-			this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
-			this.setBicycle(null);
-			this.setState(ParkingSlotState.FreeToUse);
-			this.setLastChangeDate(newDate);
-			done=true;
+		if(this.getBicycle() == null) {
+			throw new Exception("no bicycle in the parking slot");
 		}
-		
-		return done;
+	
+		//the bike is taken in the parkingslot 
+		this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
+		this.setBicycle(null);
+		this.setState(ParkingSlotState.FreeToUse);
+		this.setLastChangeDate(newDate);
 	}
 	
 	/**
@@ -124,20 +120,17 @@ public class ParkingSlot {
 	 * @param newDate
 	 * @return
 	 */
-	public boolean returnaBike(User user, Date newDate) {
+	public void returnaBike(User user, Date newDate) throws Exception {
 		
-		boolean done = false;
-		
-			if(this.getBicycle() == null) {
-				//the bike is returned in the parkingslot 
-				this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
-				this.setBicycle(user.getCurrentRide().getBicycle());
-				this.setState(ParkingSlotState.Bicycle);
-				this.setLastChangeDate(newDate);
-				done=true;
+			if(this.getBicycle() != null) {
+				throw new Exception("There is already a bicycle in the parking slot");
 			}
-
-		return done;
+				
+			//the bike is returned in the parking slot 
+			this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
+			this.setBicycle(user.getCurrentRide().getBicycle());
+			this.setState(ParkingSlotState.Bicycle);
+			this.setLastChangeDate(newDate);
 	}
 
 	/**

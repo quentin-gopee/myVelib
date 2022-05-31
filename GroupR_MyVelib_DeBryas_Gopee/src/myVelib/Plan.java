@@ -16,7 +16,6 @@ import java.util.UUID;
 public class Plan {
 	private ParkingSlot startParkingSlot;
 	private ParkingSlot endParkingSlot;
-	private boolean goToBike;
 	private MyVelib myVelib;
 	
 	public Plan(MyVelib myVelib) {
@@ -38,14 +37,6 @@ public class Plan {
 	public void setEndParkingSlot(ParkingSlot endParkingSlot) {
 		this.endParkingSlot = endParkingSlot;
 	}
-	
-	public boolean isGoToBike() {
-		return goToBike;
-	}
-
-	public void setGoToBike(boolean goToBike) {
-		this.goToBike = goToBike;
-	}
 
 	public MyVelib getMyVelib() {
 		return myVelib;
@@ -58,7 +49,7 @@ public class Plan {
 	public void ClassicPlan(Location start, Location end, BicycleType type) throws Exception {
 		
 		/**
-		 * cheking that location start and location end are valid
+		 * checking that location start and location end are valid
 		 */
 		if(start.getX()> myVelib.getSide()) {
 			throw new Exception("location out of the map !");
@@ -129,7 +120,7 @@ public class Plan {
 			}
 		}
 		
-		//cheking that it is interesting to really using this bike instead of walking
+		//checking that it is interesting to really using this bike instead of walking
 		
 		double walkingDistance = start.distance(end);
 		double bikeWalkingDistance = start.distance(startParkingSlot.getStation().getLocation()) + 
@@ -137,11 +128,9 @@ public class Plan {
 		
 		if(walkingDistance <= bikeWalkingDistance) {
 			System.out.println("it is not interesting to take a bike for the user");
-			this.goToBike = false;
 		}if(startParkingSlot==null || endParkingSlot==null) {
-			this.goToBike = false;
-			System.out.println("no bike is available");
-		}else {this.goToBike=true;}
+			throw new Exception("no bike is available");
+		}
 		
 		
 	}
