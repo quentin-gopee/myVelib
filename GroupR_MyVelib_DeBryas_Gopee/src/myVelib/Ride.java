@@ -116,63 +116,55 @@ public class Ride extends History{
 	 * Start the ride
 	 * @param startingTime the date of the start
 	 */
-	public void startRide(Date startingTime) {
+	public void startRide(Date startingTime) throws Exception{
 		if (state != RideState.Planned) {
-			System.out.println("Ride already started!");
-			return;
+			throw new Exception("Ride already started!");
 		}
 		
-		boolean done = plan.getStartParkingSlot().rentaBike(user, startingTime);
+		plan.getStartParkingSlot().rentaBike(user, startingTime);
 		
-		if (done) {
-			super.setStartingTime(startingTime); // set the start of the ride
-			state = RideState.Started;
-		} else {
-			System.out.println("Error cannot get a bicycle");
-		}
+		super.setStartingTime(startingTime); // set the start of the ride
+		state = RideState.Started;
 	}
 	
 	/**
 	 * function for ending a ride
 	 * @param endingTime the date of the end
 	 */
-	public void endRide(Date endingTime) {
+	public void endRide(Date endingTime) throws Exception {
 		if (state == RideState.Planned) {
-			System.out.println("Ride not started!");
-			return;
+			throw new Exception("Ride not started!");
 		} else if (state != RideState.Ended) {
-			System.out.println("Ride already finished!");
-			return;
+			throw new Exception("Ride already finished!");
 		}
 		
-		boolean done = plan.getStartParkingSlot().returnaBike(user, endingTime);
+		plan.getStartParkingSlot().returnaBike(user, endingTime);
 		
-		if (done) {
-			super.setEndingTime(endingTime);
-			
-			// Calculate the time of the ride
-			int time = (int) ((super.getEndingTime().getTime() - super.getStartingTime().getTime())/ (1000 * 60));
-			bicycle.setCurrentRideTime(time);
-			
-			// If Station PLus, add free time
-			if (this.plan.getEndParkingSlot().getStation().getType() == StationType.Plus)
-				user.getRegistrationCard().stationPlus();
-			// Compute the cost
-			if (bicycle instanceof MechanicalBicycle) {
-				this.cost = ((MechanicalBicycle) bicycle).accept(user.getRegistrationCard());
-			} else if (bicycle instanceof ElectricalBicycle) {
-				this.cost = ((ElectricalBicycle) bicycle).accept(user.getRegistrationCard());
-			}	
-			
-			// Debit the card
-			user.getCreditCard().setBalance(user.getCreditCard().getBalance() - cost);
-			
-			// Add the ride to the histories
-			bicycle.addHistory(this);
-			user.addRide(this);
+		super.setEndingTime(endingTime);
+		
+		// Calculate the time of the ride
+		int time = (int) ((super.getEndingTime().getTime() - super.getStartingTime().getTime())/ (1000 * 60));
+		bicycle.setCurrentRideTime(time);
+		
+		// If Station PLus, add free time
+		if (this.plan.getEndParkingSlot().getStation().getType() == StationType.Plus)
+			user.getRegistrationCard().stationPlus();
+		
+		// Compute the cost
+		// I coudn't make a perfect visitor pattern because the bicycles are registered as Bicycle
+		if (bicycle instanceof MechanicalBicycle) {
+			this.cost = ((MechanicalBicycle) bicycle).accept(user.getRegistrationCard());
+		} else if (bicycle instanceof ElectricalBicycle) {
+			this.cost = ((ElectricalBicycle) bicycle).accept(user.getRegistrationCard());
 		} else {
-			System.out.println("Error cannot return the bicycle");
+			throw new Exception("Bicycle type unknown");
 		}
+		
+		// Debit the card
+		user.getCreditCard().setBalance(user.getCreditCard().getBalance() - cost);
+		
+		// Add the ride to the histories
+		bicycle.addHistory(this);
+		user.addRide(this);	
 	}
-	
 }

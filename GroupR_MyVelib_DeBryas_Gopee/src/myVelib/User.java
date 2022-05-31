@@ -3,7 +3,7 @@ import java.util.*;
 
 /**
  * Class for representing a user
- * @author jehandebryas
+ * @author jehandebryas & Quentin
  *
  */
 
@@ -108,6 +108,12 @@ public class User {
 		this.currentRide = currentRide;
 	}
 	
+	/**
+	 * Plan a new ride
+	 * @param destination the destination of the ride
+	 * @param btype the type of the bicycle the user wants for his ride
+	 * @throws Exception when a ride is already planned (a user cannot order two bicycles)
+	 */
 	public void planClassicRide(Location destination, BicycleType btype) throws Exception {
 		if (currentRide != null)
 			throw new Exception("A ride is already planned!");
@@ -115,6 +121,32 @@ public class User {
 		Plan plan = new Plan(myVelib);
 		plan.ClassicPlan(this.location, destination, btype);
 		currentRide = new Ride(plan, this);
+	}
+	
+	/**
+	 * Start the ride when the user takes the bicycle
+	 * @param startingTime the date of the start
+	 * @throws Exception if the ride has already started
+	 */
+	public void startRide(Date startingTime) throws Exception {
+		currentRide.startRide(startingTime);
+	}
+	
+	/**
+	 * End the ride when the user returns the bicycle
+	 * @param endingTime the date of the end
+	 * @throws Exception if the ride is already finished or not started
+	 */
+	public void endtRide(Date endingTime) throws Exception {
+		currentRide.startRide(endingTime);
+		currentRide = null;
+	}
+	
+	/**
+	 * Cancel the current ride
+	 */
+	public void cancelRide() {
+		currentRide = null;
 	}
 
 	/**
