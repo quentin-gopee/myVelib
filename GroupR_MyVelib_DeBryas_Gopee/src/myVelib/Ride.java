@@ -122,8 +122,14 @@ public class Ride extends History{
 			return;
 		}
 		
-		super.setStartingTime(startingTime); // set the start of the ride
-		state = RideState.Started;
+		boolean done = plan.getStartParkingSlot().rentaBike(user, startingTime);
+		
+		if (done) {
+			super.setStartingTime(startingTime); // set the start of the ride
+			state = RideState.Started;
+		} else {
+			System.out.println("Error cannot get a bicycle");
+		}
 	}
 	
 	/**
@@ -139,29 +145,35 @@ public class Ride extends History{
 			return;
 		}
 		
-		super.setEndingTime(endingTime);
+		boolean done = plan.getStartParkingSlot().returnaBike(user, endingTime);
 		
-		// Calculate the time of the ride
-		int time = (int) ((super.getEndingTime().getTime() - super.getStartingTime().getTime())/ (1000 * 60))
-        % 60;
-		bicycle.setCurrentRideTime(time);
-		
-		// If Station PLus, add free time
-		if (this.plan.getEndParkingSlot().getStation().getType() == StationType.Plus)
-			user.getRegistrationCard().stationPlus();
-		// Compute the cost
-		if (bicycle instanceof MechanicalBicycle) {
-			this.cost = ((MechanicalBicycle) bicycle).accept(user.getRegistrationCard());
-		} else if (bicycle instanceof ElectricalBicycle) {
-			this.cost = ((ElectricalBicycle) bicycle).accept(user.getRegistrationCard());
-		}	
-		
-		// Debit the card
-		user.getCreditCard().setBalance(user.getCreditCard().getBalance() - cost);
-		
-		// Add the ride to the histories
-		bicycle.addHistory(this);
-		user.addRide(this);
+		if (done) {
+			super.setEndingTime(endingTime);
+			
+			// Calculate the time of the ride
+			int time = (int) ((super.getEndingTime().getTime() - super.getStartingTime().getTime())/ (1000 * 60))
+	        % 60;
+			bicycle.setCurrentRideTime(time);
+			
+			// If Station PLus, add free time
+			if (this.plan.getEndParkingSlot().getStation().getType() == StationType.Plus)
+				user.getRegistrationCard().stationPlus();
+			// Compute the cost
+			if (bicycle instanceof MechanicalBicycle) {
+				this.cost = ((MechanicalBicycle) bicycle).accept(user.getRegistrationCard());
+			} else if (bicycle instanceof ElectricalBicycle) {
+				this.cost = ((ElectricalBicycle) bicycle).accept(user.getRegistrationCard());
+			}	
+			
+			// Debit the card
+			user.getCreditCard().setBalance(user.getCreditCard().getBalance() - cost);
+			
+			// Add the ride to the histories
+			bicycle.addHistory(this);
+			user.addRide(this);
+		} else {
+			System.out.println("Error cannot return the bicycle");
+		}
 	}
 	
 }
