@@ -33,7 +33,7 @@ public class UserStatistics extends Statistics{
 		ArrayList<Ride> rides = user.getRides();
 		double totalTime=0;
 		for(Ride r: rides) {
-			totalTime += r.getEndingTime().getTime()-r.getStartingTime().getTime() ; //rajouter difference de temps
+			totalTime += r.getEndingTime().getTime()-r.getStartingTime().getTime() ; 
 		}
 		
 		return totalTime;
