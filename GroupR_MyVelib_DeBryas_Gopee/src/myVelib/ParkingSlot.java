@@ -17,6 +17,7 @@ public class ParkingSlot {
 	private ParkingSlotState state;
 	private ArrayList<ParkingSlotHistory> parkingSlotHistories;
 	private Bicycle bicycle;
+	private Date lastChangeDate;
 	
 	
 	/**
@@ -73,6 +74,18 @@ public class ParkingSlot {
 
 	public void setBicycle(Bicycle bicycle) {
 		this.bicycle = bicycle;
+	}
+
+	public Date getLastChangeDate() {
+		return lastChangeDate;
+	}
+
+	public void setLastChangeDate(Date lastChangeDate) {
+		this.lastChangeDate = lastChangeDate;
+	}
+	
+	public void addParkingSlotHistory(ParkingSlotHistory pSH) {
+		this.parkingSlotHistories.add(pSH);
 	}
 }
 	
