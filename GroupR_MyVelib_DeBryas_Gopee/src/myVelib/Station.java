@@ -80,51 +80,5 @@ public class Station {
 		this.parkingSlots = parkingSlots;
 	}
 	
-	/**
-	 * function for renting a bike on this station
-	 * return truye if all happenned well.
-	 * return false if not.
-	 * @param user
-	 * @param parkingSlot
-	 * @param newDate
-	 */
-	public boolean rentaBike(User user, ParkingSlot parkingSlot, Date newDate) {
-		
-		//check that parking slot is on this station, and available
-		
-		boolean done = false;
-		
-		for(ParkingSlot pS : this.getParkingSlots()){
-			if(pS==parkingSlot && pS.getBicycle() != null) {
-				//the bike is taken in the parkingslot 
-				parkingSlot.addParkingSlotHistory(new ParkingSlotHistory(ParkingSlotState.Bicycle, pS, pS.getBicycle(), pS.getLastChangeDate(), newDate));
-				parkingSlot.setBicycle(null);
-				parkingSlot.setState(ParkingSlotState.FreeToUse);
-				parkingSlot.setLastChangeDate(newDate);
-				done=true;
-			}
-		}
-		return done;
-	}
-	
-	public boolean returnaBike(User user, ParkingSlot parkingSlot, Date newDate) {
-		
-		boolean done = false;
-		
-		for(ParkingSlot pS : this.getParkingSlots()){
-			if(pS==parkingSlot && pS.getBicycle() == null) {
-				//the bike is taken in the parkingslot 
-				parkingSlot.addParkingSlotHistory(new ParkingSlotHistory(pS.getState(), pS, pS.getBicycle(), pS.getLastChangeDate(), newDate));
-				parkingSlot.setBicycle(user.getCurrentRide().getBicycle());
-				parkingSlot.setState(ParkingSlotState.Bicycle);
-				parkingSlot.setLastChangeDate(newDate);
-				done=true;
-			}
-		}
-		return done;
-	}
-
-	
-	
 }
 

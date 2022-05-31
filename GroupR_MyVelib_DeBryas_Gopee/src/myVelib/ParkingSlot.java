@@ -87,5 +87,79 @@ public class ParkingSlot {
 	public void addParkingSlotHistory(ParkingSlotHistory pSH) {
 		this.parkingSlotHistories.add(pSH);
 	}
+	
+	
+	/**
+	 * function for renting a bike on this station
+	 * return truye if all happenned well.
+	 * return false if not.
+	 * @param user
+	 * @param parkingSlot
+	 * @param newDate
+	 */
+	public boolean rentaBike(User user, Date newDate) {
+		
+		//check that parking slot is on this station, and available
+		
+		boolean done = false;
+		
+		
+		if(this.getBicycle() != null) {
+			//the bike is taken in the parkingslot 
+			this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
+			this.setBicycle(null);
+			this.setState(ParkingSlotState.FreeToUse);
+			this.setLastChangeDate(newDate);
+			done=true;
+		}
+		
+		return done;
+	}
+	
+	/**
+	 * function for returning a bike in this station 
+	 * return true or false if happened well or not 
+	 * @param user
+	 * @param parkingSlot
+	 * @param newDate
+	 * @return
+	 */
+	public boolean returnaBike(User user, Date newDate) {
+		
+		boolean done = false;
+		
+			if(this.getBicycle() == null) {
+				//the bike is returned in the parkingslot 
+				this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
+				this.setBicycle(user.getCurrentRide().getBicycle());
+				this.setState(ParkingSlotState.Bicycle);
+				this.setLastChangeDate(newDate);
+				done=true;
+			}
+
+		return done;
+	}
+
+	/**
+	 * function for reserve a parking slot for your bike in this station 
+	 * return true or false if happened well or not 
+	 * @param user
+	 * @param parkingSlot
+	 * @param newDate
+	 * @return
+	 */
+	public boolean reserveaParkingSlot(User user, Date newDate) {
+		
+		boolean done = false;
+		
+			if(this.getBicycle() == null) {
+				//the free parking slot is reserved 
+				this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
+				this.setState(ParkingSlotState.OutOfOrder);
+				this.setLastChangeDate(newDate);
+				done=true;
+			}
+		return done;
+	}
 }
 	
