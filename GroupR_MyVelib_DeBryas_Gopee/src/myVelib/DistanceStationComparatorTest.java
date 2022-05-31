@@ -14,7 +14,7 @@ class DistanceStationComparatorTest {
 		DistanceStationComparator dsc = new DistanceStationComparator(new Location(0.0, 0.0));
 		Station s1 = new Station(UUID.randomUUID(), new Location(1.0, 1.0), StationType.Standard, true, new ArrayList<ParkingSlot>());
 		Station s2 = new Station(UUID.randomUUID(), new Location(2.0, 2.0), StationType.Standard, true, new ArrayList<ParkingSlot>());
-		assertTrue(dsc.compare(s1,s2) == 1);
+		assertTrue(dsc.compare(s1,s2) == -1);
 	}
 	
 	@Test
@@ -30,7 +30,7 @@ class DistanceStationComparatorTest {
 		DistanceStationComparator dsc = new DistanceStationComparator(new Location(0.0, 0.0));
 		Station s1 = new Station(UUID.randomUUID(), new Location(2.0, 2.0), StationType.Standard, true, new ArrayList<ParkingSlot>());
 		Station s2 = new Station(UUID.randomUUID(), new Location(1.0, 1.0), StationType.Standard, true, new ArrayList<ParkingSlot>());
-		assertTrue(dsc.compare(s1,s2) == -1);
+		assertTrue(dsc.compare(s1,s2) == 1);
 	}
 
 }
