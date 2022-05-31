@@ -14,6 +14,8 @@ public class User {
 	CreditCard creditCard;
 	RegistrationCard registrationCard;
 	ArrayList<Ride> rides;
+	double totalCharges;
+	Ride currentRide;
 	
 	/**
 	 * initializer
@@ -22,15 +24,16 @@ public class User {
 	 * @param location
 	 * @param creditCard
 	 * @param registrationCard
-	 * @param rides is an ArrayList where all the rides made by a user are registered
 	 */
-	public User(UUID ID, String name, Location location, CreditCard creditCard, RegistrationCard registrationCard, ArrayList<Ride> rides) {
+	public User(UUID ID, String name, Location location, CreditCard creditCard, RegistrationCard registrationCard) {
 		this.ID = ID;
 		this.name = name;
 		this.location = location;
 		this.creditCard = creditCard;
 		this.registrationCard = registrationCard;
-		this.rides = rides;
+		this.rides = new ArrayList<Ride>();
+		this.totalCharges = 0;
+		this.currentRide = null;
 	}
 
 	
@@ -86,6 +89,22 @@ public class User {
 		this.rides = rides;
 	}
 	
+	public double getTotalCharges() {
+		return totalCharges;
+	}
+
+	public void setTotalCharges(double totalCharges) {
+		this.totalCharges = totalCharges;
+	}
+
+	public Ride getCurrentRide() {
+		return currentRide;
+	}
+
+	public void setCurrentRide(Ride currentRide) {
+		this.currentRide = currentRide;
+	}
+
 	/**
 	 * add a ride to rides history
 	 * @param ride

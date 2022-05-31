@@ -30,16 +30,22 @@ public class Ride extends History{
 	private Bicycle bicycle;
 	
 	/**
+	 * The state of the ride
+	 */
+	private RideState state;
+	
+	/**
 	 * Creates a ride
 	 * @param plan the plan of the ride
 	 * @param user the user of the ride
 	 * @param bicycle the bicycle used in the ride
 	 */
-	public Ride(Plan plan, User user, Date startingTime, Date endingTime) {
-		super(startingTime, endingTime);
+	public Ride(Plan plan, User user) {
+		super();
 		this.plan = plan;
 		this.user = user;
 		this.bicycle = plan.getStartParkingSlot().getBicycle();
+		this.state = RideState.Planned;
 	}
 
 	/**
@@ -107,22 +113,53 @@ public class Ride extends History{
 	}
 	
 	/**
-	 * function for ending a ride
+	 * Start the ride
+	 * @param startingTime the date of the start
 	 */
-	public void endRide() {
+	public void startRide(Date startingTime) {
+		if (state != RideState.Planned) {
+			System.out.println("Ride already started!");
+			return;
+		}
+		
+		super.setStartingTime(startingTime); // set the start of the ride
+		state = RideState.Started;
+	}
+	
+	/**
+	 * function for ending a ride
+	 * @param endingTime the date of the end
+	 */
+	public void endRide(Date endingTime) {
+		if (state == RideState.Planned) {
+			System.out.println("Ride not started!");
+			return;
+		} else if (state != RideState.Ended) {
+			System.out.println("Ride already finished!");
+			return;
+		}
+		
+		super.setEndingTime(endingTime);
+		
+		// Calculate the time of the ride
 		int time = (int) ((super.getEndingTime().getTime() - super.getStartingTime().getTime())/ (1000 * 60))
         % 60;
-		bicycle.setCurrentRideTime(time); //time of the ride
+		bicycle.setCurrentRideTime(time);
+		
+		// If Station PLus, add free time
 		if (this.plan.getEndParkingSlot().getStation().getType() == StationType.Plus)
 			user.getRegistrationCard().stationPlus();
+		// Compute the cost
 		if (bicycle instanceof MechanicalBicycle) {
 			this.cost = ((MechanicalBicycle) bicycle).accept(user.getRegistrationCard());
 		} else if (bicycle instanceof ElectricalBicycle) {
 			this.cost = ((ElectricalBicycle) bicycle).accept(user.getRegistrationCard());
-		}
+		}	
 		
-		
+		// Debit the card
 		user.getCreditCard().setBalance(user.getCreditCard().getBalance() - cost);
+		
+		// Add the ride to the histories
 		bicycle.addHistory(this);
 		user.addRide(this);
 	}

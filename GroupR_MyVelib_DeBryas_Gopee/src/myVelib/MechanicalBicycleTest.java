@@ -6,6 +6,12 @@ import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Class for testing MechanicalBicycle
+ * @author Quentin
+ *
+ */
+
 class MechanicalBicycleTest {
 
 	@Test

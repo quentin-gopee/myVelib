@@ -2,6 +2,12 @@ package myVelib;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Class for testing ElectricalBicycle
+ * @author Quentin
+ *
+ */
+
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;

@@ -2,6 +2,12 @@ package myVelib;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Class for testing NoCard
+ * @author Quentin
+ *
+ */
+
 import org.junit.jupiter.api.Test;
 
 class NoCardTest {

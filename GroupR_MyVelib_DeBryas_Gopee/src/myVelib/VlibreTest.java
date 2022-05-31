@@ -5,6 +5,12 @@ import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Class for testing Vlibre
+ * @author Quentin
+ *
+ */
+
 class VlibreTest {
 	
 	@Test
