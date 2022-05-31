@@ -1,6 +1,12 @@
 package myVelib;
 import java.util.*;
 
+/**
+ * Class to sort the stations according to their distance to a point
+ * @author Quentin
+ *
+ */
+
 public class DistanceStationComparator implements Comparator<Station> {
 	
 	private Location location;
