@@ -1,5 +1,6 @@
 package myVelib;
 import java.*;
+import java.util.*;
 
 
 /**
@@ -24,8 +25,14 @@ public class Location {
 		setY(y);
 	}
 	
-	public Location() {
+	/**
+	 * create a random location bewteen 0 and max
+	 * @param max
+	 */
+	public Location(double max) {
 		super();
+		this.X = new Random().nextDouble()*max;
+		this.Y = new Random().nextDouble()*max;
 	}
 
 	/**
@@ -53,5 +60,5 @@ public class Location {
 		return Math.pow(distance, ((double)1)/((double)2));
 
 	}
-	
+		
 }

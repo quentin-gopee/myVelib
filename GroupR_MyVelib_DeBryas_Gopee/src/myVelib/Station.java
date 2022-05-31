@@ -27,14 +27,17 @@ public class Station {
 	 * @param online
 	 * @param parkingSlots
 	 */
-	public Station(UUID ID, Location location, StationType type, boolean online, ArrayList<ParkingSlot> parkingSlots) {
-		this.ID = ID;
+	public Station(Location location, StationType type, boolean online, ArrayList<ParkingSlot> parkingSlots) {
+		this.ID = UUID.randomUUID();
 		this.location = location;
 		this.type = type;
 		this.online = online;
 		this.parkingSlots = parkingSlots;
 	}
-
+	
+	public Station() {
+		this.ID=UUID.randomUUID();
+	}
 	
 	/**
 	 * getters & setters
