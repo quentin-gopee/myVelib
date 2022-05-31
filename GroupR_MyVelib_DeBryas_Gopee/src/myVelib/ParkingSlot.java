@@ -95,7 +95,7 @@ public class ParkingSlot {
 	 * return false if not.
 	 * @param user
 	 * @param parkingSlot
-	 * @param newDate
+	 * @param newDate is the date at which the bike is rent
 	 */
 	public boolean rentaBike(User user, Date newDate) {
 		
