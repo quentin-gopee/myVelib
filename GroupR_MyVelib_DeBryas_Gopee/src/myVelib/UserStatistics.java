@@ -28,7 +28,12 @@ public class UserStatistics extends Statistics{
 		else return user.getRides().size();
 	}
 	
-	public double totalTimeSpentOnABike(User user) {
+	/**
+	 * 
+	 * @param user
+	 * @return total time spent on a bike in minutes
+	 */
+	public int totalTimeSpentOnABike(User user) {
 		
 		ArrayList<Ride> rides = user.getRides();
 		double totalTime=0;
@@ -36,10 +41,15 @@ public class UserStatistics extends Statistics{
 			totalTime += r.getEndingTime().getTime()-r.getStartingTime().getTime() ; 
 		}
 		
-		return totalTime;
+		return (int) (totalTime/(1000*60));
 		
 	}
 	
+	/**
+	 * return total ammount of charges that a user spent for bikes
+	 * @param user
+	 * @return
+	 */
 	public double totalAmmountofCharges(User user) {
 		
 		ArrayList<Ride> rides = user.getRides();
@@ -51,9 +61,24 @@ public class UserStatistics extends Statistics{
 		return totalCharges;
 	}
 
+	/**
+	 * return the total time credit earned by a user thanks to his card
+	 * @param user
+	 * @return
+	 */
 	public int timeCreditEarned(User user) {
-		int timeCreditEarned = 0;
-		//code here
+		int timeCreditEarned =0;
+		if(user.getRegistrationCard() instanceof NoCard) {
+			System.out.println("this user doesn't have any registration card");
+		}
+		if(user.getRegistrationCard()instanceof Vlibre) {
+			Vlibre card = (Vlibre) user.getRegistrationCard();
+			timeCreditEarned = card.getTimeBalance();
+		}
+		if(user.getRegistrationCard()instanceof Vmax) {
+			Vmax card = (Vmax) user.getRegistrationCard();
+			timeCreditEarned = card.getTimeBalance();
+		}
 		return timeCreditEarned;
 	}
 }
