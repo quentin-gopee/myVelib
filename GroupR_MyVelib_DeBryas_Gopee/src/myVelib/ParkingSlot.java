@@ -21,15 +21,31 @@ public class ParkingSlot {
 	
 	
 	/**
-	 * initializer of the ParkingSlotclass
+	 * initializer of the ParkingSlotclass in state FreeToUse
 	 * @param station
-	 * @param ID
-	 * @param state
+	 * @param creationDate
 	 */
-	public ParkingSlot(Station station, UUID ID, ParkingSlotState state) {
+	public ParkingSlot(Station station, Date creationDate) {
 		this.station = station;
-		this.ID = ID;
-		this.state = state;
+		this.ID = UUID.randomUUID();
+		this.state = ParkingSlotState.FreeToUse;
+		this.parkingSlotHistories = new ArrayList<ParkingSlotHistory>();
+		this.bicycle = null;
+		this.lastChangeDate = creationDate;
+	}
+	
+	/**
+	 * initializer of the ParkingSlotclass with a bicycle
+	 * @param station
+	 * @param bicycle
+	 * @param creationDate
+	 */
+	public ParkingSlot(Station station, Bicycle bicycle, Date creationDate) {	
+		this.station = station;
+		this.ID = UUID.randomUUID();
+		this.state = ParkingSlotState.Bicycle;
+		this.bicycle = bicycle;
+		this.lastChangeDate = creationDate;
 	}
 	
 	/**

@@ -83,5 +83,9 @@ public class Station {
 		this.parkingSlots = parkingSlots;
 	}
 	
+	public void addParkingSlot(ParkingSlot ps) {
+		parkingSlots.add(ps);
+	}
+	
 }
 

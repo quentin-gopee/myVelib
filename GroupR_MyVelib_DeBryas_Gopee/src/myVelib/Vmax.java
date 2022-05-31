@@ -25,8 +25,8 @@ public class Vmax implements RegistrationCard{
 	 * creates a Vmax card
 	 * @param ID id of the card
 	 */
-	public Vmax(UUID ID) {
-		this.ID = ID;
+	public Vmax() {
+		this.ID = UUID.randomUUID();
 	}
 	
 	@Override

@@ -27,8 +27,8 @@ public class User {
 	 * @param creditCard
 	 * @param registrationCard
 	 */
-	public User(UUID ID, String name, Location location, CreditCard creditCard, RegistrationCard registrationCard, MyVelib myVelib) {
-		this.ID = ID;
+	public User(String name, Location location, CreditCard creditCard, RegistrationCard registrationCard, MyVelib myVelib) {
+		this.ID = UUID.randomUUID();
 		this.name = name;
 		this.location = location;
 		this.creditCard = creditCard;

@@ -17,7 +17,7 @@ class VmaxTest {
 	@Test
 	void testVisitMechanicalBicycle() {
 		Bicycle b = new MechanicalBicycle();
-		RegistrationCard rc = new Vmax(UUID.randomUUID());
+		RegistrationCard rc = new Vmax();
 		((Vmax)rc).setTimeBalance(30);
 		b.setCurrentRideTime(120);
 		assertTrue(rc.visit((MechanicalBicycle) b) == 0.5);
@@ -26,7 +26,7 @@ class VmaxTest {
 	@Test
 	void testVisitElectricalBicycle() {
 		Bicycle b = new ElectricalBicycle();
-		RegistrationCard rc = new Vmax(UUID.randomUUID());
+		RegistrationCard rc = new Vmax();
 		((Vmax)rc).setTimeBalance(30);
 		b.setCurrentRideTime(120);
 		assertTrue(rc.visit((ElectricalBicycle) b) == 0.5);
@@ -34,7 +34,7 @@ class VmaxTest {
 
 	@Test
 	void testStationPlus() {
-		RegistrationCard rc = new Vmax(UUID.randomUUID());
+		RegistrationCard rc = new Vmax();
 		rc.stationPlus();
 		assertTrue(((Vmax) rc).getTimeBalance() == 5);
 	}

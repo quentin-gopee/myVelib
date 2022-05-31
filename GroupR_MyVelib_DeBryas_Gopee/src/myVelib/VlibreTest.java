@@ -16,7 +16,7 @@ class VlibreTest {
 	@Test
 	void testVisitMechanicalBicycle() {
 		Bicycle b = new MechanicalBicycle();
-		RegistrationCard rc = new Vlibre(UUID.randomUUID());
+		RegistrationCard rc = new Vlibre();
 		((Vlibre)rc).setTimeBalance(30);
 		b.setCurrentRideTime(120);
 		assertTrue(rc.visit((MechanicalBicycle) b) == 0.5);
@@ -25,7 +25,7 @@ class VlibreTest {
 	@Test
 	void testVisitElectricalBicycle() {
 		Bicycle b = new ElectricalBicycle();
-		RegistrationCard rc = new Vlibre(UUID.randomUUID());
+		RegistrationCard rc = new Vlibre();
 		((Vlibre)rc).setTimeBalance(30);
 		b.setCurrentRideTime(120);
 		assertTrue(rc.visit((ElectricalBicycle) b) == 2);
@@ -33,7 +33,7 @@ class VlibreTest {
 
 	@Test
 	void testStationPlus() {
-		RegistrationCard rc = new Vlibre(UUID.randomUUID());
+		RegistrationCard rc = new Vlibre();
 		rc.stationPlus();
 		assertTrue(((Vlibre) rc).getTimeBalance() == 5);
 	}

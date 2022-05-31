@@ -7,5 +7,5 @@ package myVelib;
  */
 
 public enum ParkingSlotState {
-	Bicycle, FreeToUse, OutOfOrder
+	Bicycle, ReservedBicycle, FreeToUse, OutOfOrder
 }

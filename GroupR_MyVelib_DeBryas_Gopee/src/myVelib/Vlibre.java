@@ -25,8 +25,8 @@ public class Vlibre implements RegistrationCard{
 	 * creates a Vlibre card
 	 * @param ID id of the card
 	 */
-	public Vlibre(UUID ID) {
-		this.ID = ID;
+	public Vlibre() {
+		this.ID = UUID.randomUUID();
 	}
 	
 	@Override

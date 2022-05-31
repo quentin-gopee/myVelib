@@ -25,7 +25,7 @@ class MechanicalBicycleTest {
 	@Test
 	void acceptVlibreTest() {
 		Bicycle b = new MechanicalBicycle();
-		RegistrationCard rc = new Vlibre(UUID.randomUUID());
+		RegistrationCard rc = new Vlibre();
 		((Vlibre)rc).setTimeBalance(30);
 		b.setCurrentRideTime(120);
 		assertTrue(b.accept(rc) == 0.5);
@@ -34,7 +34,7 @@ class MechanicalBicycleTest {
 	@Test
 	void acceptVmaxTest() {
 		Bicycle b = new MechanicalBicycle();
-		RegistrationCard rc = new Vmax(UUID.randomUUID());
+		RegistrationCard rc = new Vmax();
 		((Vmax)rc).setTimeBalance(30);
 		b.setCurrentRideTime(120);
 		assertTrue(b.accept(rc) == 0.5);
