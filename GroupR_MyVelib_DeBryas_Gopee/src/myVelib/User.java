@@ -108,6 +108,14 @@ public class User {
 		this.currentRide = currentRide;
 	}
 	
+	public MyVelib getMyVelib() {
+		return myVelib;
+	}
+
+	public void setMyVelib(MyVelib myVelib) {
+		this.myVelib = myVelib;
+	}
+
 	/**
 	 * Plan a new ride
 	 * @param destination the destination of the ride
@@ -137,8 +145,8 @@ public class User {
 	 * @param endingTime the date of the end
 	 * @throws Exception if the ride is already finished or not started
 	 */
-	public void endtRide(Date endingTime) throws Exception {
-		currentRide.startRide(endingTime);
+	public void endRide(Date endingTime) throws Exception {
+		currentRide.endRide(endingTime);
 		currentRide = null;
 	}
 	

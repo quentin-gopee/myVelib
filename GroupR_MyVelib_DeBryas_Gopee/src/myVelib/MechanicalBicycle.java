@@ -33,6 +33,8 @@ public class MechanicalBicycle implements Bicycle {
 	 */
 	public MechanicalBicycle(){
 		this.setID(UUID.randomUUID());
+		this.currentRideTime = 0;
+		this.histories = new ArrayList<History>();
 	}
 
 	@Override

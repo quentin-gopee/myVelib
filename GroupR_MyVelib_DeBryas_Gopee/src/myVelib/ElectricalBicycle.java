@@ -32,6 +32,8 @@ public class ElectricalBicycle implements Bicycle {
 	 */
 	public ElectricalBicycle(){
 		this.setID(UUID.randomUUID());
+		this.currentRideTime = 0;
+		this.histories = new ArrayList<History>();
 	}
 
 	@Override

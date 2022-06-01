@@ -68,11 +68,11 @@ public class UserStatistics {
 		}
 		if(user.getRegistrationCard()instanceof Vlibre) {
 			Vlibre card = (Vlibre) user.getRegistrationCard();
-			timeCreditEarned = card.getTimeBalance();
+			timeCreditEarned = card.getTotalTimeCreditEarned();
 		}
 		if(user.getRegistrationCard()instanceof Vmax) {
 			Vmax card = (Vmax) user.getRegistrationCard();
-			timeCreditEarned = card.getTimeBalance();
+			timeCreditEarned = card.getTotalTimeCreditEarned();
 		}
 		return timeCreditEarned;
 	}

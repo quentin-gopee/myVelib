@@ -144,7 +144,7 @@ public class Ride extends History{
 	public void endRide(Date endingTime) throws Exception {
 		if (state == RideState.Planned) {
 			throw new Exception("Ride not started!");
-		} else if (state != RideState.Ended) {
+		} else if (state == RideState.Ended) {
 			throw new Exception("Ride already finished!");
 		}
 		
