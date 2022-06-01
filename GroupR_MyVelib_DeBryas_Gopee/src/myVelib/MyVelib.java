@@ -219,19 +219,28 @@ public class MyVelib {
 			
 			for(int j = 0 ; j< nSlots;j++) {
 				ParkingSlot parkingSlot = new ParkingSlot(station, beginningDate);
-				if(j<nSlots-bikePerStation-remainingBikes) {
+				Bicycle newBicycle = (new Random().nextDouble() < 0.5) ? new ElectricalBicycle():new MechanicalBicycle();
+				if(j<nSlots-bikePerStation) {
+					if(remainingBikes==0) {
 					parkingSlot.setBicycle(null);
 					parkingSlot.setState(ParkingSlotState.FreeToUse);
-					remainingBikes--;
+					}else {
+						parkingSlot.setBicycle(newBicycle);
+						this.addBicycle(newBicycle);
+						parkingSlot.setState(ParkingSlotState.Bicycle);
+						remainingBikes--;
+					}
 				}else {
-					parkingSlot.setBicycle((new Random().nextDouble() < 0.5) ? new ElectricalBicycle():new MechanicalBicycle());
+					parkingSlot.setBicycle(newBicycle);
+					this.addBicycle(newBicycle);
 					parkingSlot.setState(ParkingSlotState.Bicycle);
 				}
 				station.addParkingSlot(parkingSlot);
 				
 				
 			}
-			this.addStation(station);			
+			this.addStation(station);
+			//System.out.println(remainingBikes);
 		}
 		
 		

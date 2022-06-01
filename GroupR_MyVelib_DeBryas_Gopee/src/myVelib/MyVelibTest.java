@@ -40,8 +40,10 @@ class MyVelibTest {
 		
 		ArrayList<Bicycle> bicycles = new ArrayList<Bicycle>(mV.getBicycles().values());
 		
-		assertTrue(bicycles.size()==75);
+		assertTrue(mV.getBicycles().size()==75);
+		assertTrue(mV.getSide()==4.0);
 
+		
 	}
 
 }
