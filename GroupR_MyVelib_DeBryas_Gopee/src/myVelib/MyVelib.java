@@ -93,18 +93,25 @@ public class MyVelib {
 	 * @param args
 	 */
 	
+	
+	//add a station to stations
 	public void addStation(Station station) {
 		this.stations.put(station.getID(), station);
 	}
 	
+	
+	//add a bicycle to bicycles
 	public void addBicycle(Bicycle bicycle) {
 		this.bicycles.put(bicycle.getID(), bicycle);
 	}
 	
+	//add a user to users
 	public void addUser(User user) {
 		this.users.put((UUID) user.getID(), user);
 	}
 	
+	
+	//create a small world with stations, bicycles, users, etc.
 	public void createMyVelib() {
 		
 		

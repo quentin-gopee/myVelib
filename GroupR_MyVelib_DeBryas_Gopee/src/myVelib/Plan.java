@@ -94,6 +94,7 @@ public class Plan {
 		
 		labelStart:
 		for(Station s : stationsList) {
+			if(!s.isOnline())continue;
 			for(ParkingSlot pS : s.getParkingSlots()) {
 				if(pS.getState()== ParkingSlotState.Bicycle && pS.getBicycle().getBicycleType() == type) {
 					this.startParkingSlot = pS;
@@ -114,6 +115,7 @@ public class Plan {
 		
 		labelEnd:
 		for(Station s : stationsList) {
+			if(!s.isOnline())continue;
 			for(ParkingSlot pS : s.getParkingSlots()) {
 				if(pS.getState()== ParkingSlotState.FreeToUse) {
 					this.endParkingSlot = pS;

@@ -26,7 +26,7 @@ public class StationStatistics{
 	 * average rate of occupation of a station over a certain time window
 	 * @return
 	 */
-	public double avergareRateofOccupation(Station station, Date ts, Date te) {
+	public double averageRateofOccupation(Station station, Date ts, Date te) {
 		
 		double avergareRateofOccupation = 0;
 
