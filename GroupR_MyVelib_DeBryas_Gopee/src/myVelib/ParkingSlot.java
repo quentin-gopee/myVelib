@@ -113,7 +113,7 @@ public class ParkingSlot {
 	 * @param parkingSlot
 	 * @param newDate is the date at which the bike is rent
 	 */
-	public void rentaBike(User user, Date newDate) throws Exception {
+	public void rentBicycle(User user, Date newDate) throws Exception {
 		
 		//check that parking slot is on this station, and available
 		
@@ -121,8 +121,10 @@ public class ParkingSlot {
 			throw new Exception("no bicycle in the parking slot");
 		}
 	
-		//the bike is taken in the parkingslot 
-		this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
+		//the bike is taken in the parkingslot
+		ParkingSlotHistory ps = new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate);
+		this.addParkingSlotHistory(ps);
+		this.getBicycle().addHistory(ps);
 		this.setBicycle(null);
 		this.setState(ParkingSlotState.FreeToUse);
 		this.setLastChangeDate(newDate);
@@ -136,7 +138,7 @@ public class ParkingSlot {
 	 * @param newDate
 	 * @return
 	 */
-	public void returnaBike(User user, Date newDate) throws Exception {
+	public void returnBicycle(User user, Date newDate) throws Exception {
 		
 			if(this.getBicycle() != null) {
 				throw new Exception("There is already a bicycle in the parking slot");
@@ -157,18 +159,38 @@ public class ParkingSlot {
 	 * @param newDate
 	 * @return
 	 */
-	public boolean reserveaParkingSlot(User user, Date newDate) {
+	public void reserveParkingSlot(User user, Date newDate) throws Exception {
 		
-		boolean done = false;
+		if(this.getBicycle() != null) {
+			throw new Exception("There is already a bicycle in the parking slot");
+		}
 		
-			if(this.getBicycle() == null) {
-				//the free parking slot is reserved 
-				this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
-				this.setState(ParkingSlotState.OutOfOrder);
-				this.setLastChangeDate(newDate);
-				done=true;
-			}
-		return done;
+		//the free parking slot is reserved 
+		this.addParkingSlotHistory(new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate));
+		this.setState(ParkingSlotState.OutOfOrder);
+		this.setLastChangeDate(newDate);
+	}
+	
+	/**
+	 * function for reserve a parking slot for your bike in this station 
+	 * return true or false if happened well or not 
+	 * @param user
+	 * @param parkingSlot
+	 * @param newDate
+	 * @return
+	 */
+	public void reserveBicycle(User user, Date newDate) throws Exception {
+		
+		if(this.getBicycle() == null) {
+			throw new Exception("There is no bicycle in the parking slot");
+		}
+		
+		//the free parking slot is reserved 
+		ParkingSlotHistory ps = new ParkingSlotHistory(this.getState(), this, this.getBicycle(), this.getLastChangeDate(), newDate);
+		this.addParkingSlotHistory(ps);
+		this.getBicycle().addHistory(ps);
+		this.setState(ParkingSlotState.ReservedBicycle);
+		this.setLastChangeDate(newDate);
 	}
 }
 	

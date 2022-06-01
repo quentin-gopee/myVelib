@@ -40,12 +40,14 @@ public class Ride extends History{
 	 * @param user the user of the ride
 	 * @param bicycle the bicycle used in the ride
 	 */
-	public Ride(Plan plan, User user) {
+	public Ride(Plan plan, User user, Date planningTime) throws Exception{
 		super();
 		this.plan = plan;
 		this.user = user;
 		this.bicycle = plan.getStartParkingSlot().getBicycle();
 		this.state = RideState.Planned;
+		plan.getStartParkingSlot().reserveBicycle(user, planningTime);
+		plan.getEndParkingSlot().reserveParkingSlot(user, planningTime);
 	}
 
 	/**
@@ -112,6 +114,14 @@ public class Ride extends History{
 		this.bicycle = bicycle;
 	}
 	
+	public RideState getState() {
+		return state;
+	}
+
+	public void setState(RideState state) {
+		this.state = state;
+	}
+
 	/**
 	 * Start the ride
 	 * @param startingTime the date of the start
@@ -121,7 +131,7 @@ public class Ride extends History{
 			throw new Exception("Ride already started!");
 		}
 		
-		plan.getStartParkingSlot().rentaBike(user, startingTime);
+		plan.getStartParkingSlot().rentBicycle(user, startingTime);
 		
 		super.setStartingTime(startingTime); // set the start of the ride
 		state = RideState.Started;
@@ -138,7 +148,7 @@ public class Ride extends History{
 			throw new Exception("Ride already finished!");
 		}
 		
-		plan.getStartParkingSlot().returnaBike(user, endingTime);
+		plan.getStartParkingSlot().returnBicycle(user, endingTime);
 		
 		super.setEndingTime(endingTime);
 		

@@ -13,27 +13,13 @@ import java.math.*;
 public class StationStatistics{
 	
 	public int totalNumberofRentOperations(Station station) {
-		int totalNumberofRentOperation = 0;
-		for(ParkingSlot pS : station.getParkingSlots()) {
-			for(int i=1 ; i<pS.getParkingSlotHistories().size();i++) {
-				if(pS.getParkingSlotHistories().get(i).getState()==ParkingSlotState.FreeToUse && pS.getParkingSlotHistories().get(i-1).getState()==ParkingSlotState.Bicycle){
-					totalNumberofRentOperation++;
-				}
-			}
-		}
-		return totalNumberofRentOperation;
+		Counter c = new Counter();
+		return c.countRentingStation(station);
 	}
 
-	public int totalNumberofReturneOperations(Station station) {
-		int totalNumberofReturneOperations = 0;
-		for(ParkingSlot pS : station.getParkingSlots()) {
-			for(int i=1 ; i<pS.getParkingSlotHistories().size();i++) {
-				if(pS.getParkingSlotHistories().get(i).getState()==ParkingSlotState.Bicycle && (pS.getParkingSlotHistories().get(i-1).getState()==ParkingSlotState.OutOfOrder || pS.getParkingSlotHistories().get(i-1).getState()==ParkingSlotState.FreeToUse)){
-					totalNumberofReturneOperations++;
-				}
-			}
-		}
-		return totalNumberofReturneOperations;
+	public int totalNumberofReturnOperations(Station station) {
+		Counter c = new Counter();
+		return c.countDroppingStation(station);
 	}
 	
 	/**

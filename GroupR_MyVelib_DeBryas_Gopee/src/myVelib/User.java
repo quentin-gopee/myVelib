@@ -114,13 +114,13 @@ public class User {
 	 * @param btype the type of the bicycle the user wants for his ride
 	 * @throws Exception when a ride is already planned (a user cannot order two bicycles)
 	 */
-	public void planClassicRide(Location destination, BicycleType btype) throws Exception {
+	public void planClassicRide(Location destination, BicycleType btype, Date planningTime) throws Exception {
 		if (currentRide != null)
 			throw new Exception("A ride is already planned!");
 			
 		Plan plan = new Plan(myVelib);
 		plan.ClassicPlan(this.location, destination, btype);
-		currentRide = new Ride(plan, this);
+		currentRide = new Ride(plan, this, planningTime);
 	}
 	
 	/**
@@ -145,8 +145,15 @@ public class User {
 	/**
 	 * Cancel the current ride
 	 */
-	public void cancelRide() {
+	public void cancelRide() throws Exception {
+		if (currentRide.getState() != RideState.Planned) {
+			throw new Exception("Cannot cancel the ride");
+		}
+		
+		currentRide.getPlan().getStartParkingSlot().setState(ParkingSlotState.Bicycle);
+		currentRide.getPlan().getEndParkingSlot().setState(ParkingSlotState.FreeToUse);
 		currentRide = null;
+		
 	}
 
 	/**

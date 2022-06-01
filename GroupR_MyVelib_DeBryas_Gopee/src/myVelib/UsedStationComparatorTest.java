@@ -7,6 +7,12 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Class to test UsedStationComparator
+ * @author Quentin
+ *
+ */
+
 class UsedStationComparatorTest {
 
 	@Test
