@@ -10,15 +10,7 @@ import java.math.*;
  * @author jehandebryas
  *
  */
-public class StationStatistics extends Statistics{
-
-	/**
-	 * Constructor
-	 * @param myVelib
-	 */
-	public StationStatistics(MyVelib myVelib){
-		super(myVelib);
-	}
+public class StationStatistics{
 	
 	public int totalNumberofRentOperations(Station station) {
 		int totalNumberofRentOperation = 0;
@@ -75,9 +67,9 @@ public class StationStatistics extends Statistics{
 	 * return the most used station
 	 * @return
 	 */
-	public ArrayList<Station> mostUsedStation() {
+	public ArrayList<Station> mostUsedStation(MyVelib myVelib) {
 		
-		ArrayList<Station> ListStation = new ArrayList<Station>(super.getMyVelib().getStations().values()); 	
+		ArrayList<Station> ListStation = new ArrayList<Station>(myVelib.getStations().values()); 	
 		
 		UsedStationComparator comparator = new UsedStationComparator();
 		Collections.sort(ListStation, comparator);;
@@ -88,8 +80,12 @@ public class StationStatistics extends Statistics{
 	 * return the least occupied station
 	 * @return
 	 */
-	public Station leastOccupiedStation() {
+	public ArrayList<Station> leastOccupiedStation(MyVelib myVelib) {
 		
-		return null;
+		ArrayList<Station> ListStation = new ArrayList<Station>(myVelib.getStations().values()); 	
+		
+		OccupiedStationComparator comparator = new OccupiedStationComparator();
+		Collections.sort(ListStation, comparator);;
+		return ListStation;
 	}
 }
