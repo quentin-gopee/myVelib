@@ -25,6 +25,15 @@ public class Location {
 		setY(y);
 	}
 	
+	
+	
+	@Override
+	public String toString() {
+		return "Location [X=" + X + ", Y=" + Y + "]";
+	}
+
+
+
 	/**
 	 * create a random location bewteen 0 and max
 	 * @param max
