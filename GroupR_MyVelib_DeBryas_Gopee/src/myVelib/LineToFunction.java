@@ -13,11 +13,21 @@ public class LineToFunction {
 		myVelibs = new HashMap<String, MyVelib>();
 	}
 	
-	public void Execute(String line) {
+	public void Execute(String line) throws Exception {
 		String[] parts = line.split("");
 		
 		if (parts[0] == "setup") {
-			
+			if (parts.length == 2) {
+				MyVelib myVelib = new MyVelib();
+				myVelib.setup();
+				myVelibs.put(parts[1], myVelib);
+			} else if (parts.length == 6) {
+				MyVelib myVelib = new MyVelib();
+				myVelib.setup(Integer.valueOf(parts[2]), Integer.valueOf(parts[3]), Integer.valueOf(parts[4]), Integer.valueOf(parts[5]));
+				myVelibs.put(parts[1], myVelib);
+			} else {
+				throw new Exception("Command unknown");
+			}
 		} else if (parts[0] == "addUser") {
 			
 		} else if (parts[0] == "offline") {
