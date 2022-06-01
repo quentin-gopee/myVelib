@@ -2,6 +2,8 @@ package myVelib;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 class MyVelibTest {
@@ -24,6 +26,22 @@ class MyVelibTest {
 		mV.addUser(user);
 		
 		assertTrue(true);
+	}
+	
+	@Test
+	void testSetUp() {
+		MyVelib mV = new MyVelib();
+		mV.setUp(10, 10, 4.0, 75);
+		
+		ArrayList<Station> stations = new ArrayList<Station>(mV.getStations().values());
+		
+		assertTrue(stations.size()==10);
+		assertTrue(stations.get(2).getParkingSlots().size()==10);
+		
+		ArrayList<Bicycle> bicycles = new ArrayList<Bicycle>(mV.getBicycles().values());
+		
+		assertTrue(bicycles.size()==75);
+
 	}
 
 }

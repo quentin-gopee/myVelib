@@ -50,7 +50,7 @@ public class Station {
 	}
 
 	public void setID(UUID iD) {
-		ID = iD;
+		this.ID = iD;
 	}
 
 	public Location getLocation() {

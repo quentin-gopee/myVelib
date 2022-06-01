@@ -179,5 +179,62 @@ public class MyVelib {
 		
 		
 	}
+
+	//setUp
+	
+	public void setUp(int nStations, int nSlots, double s, int nBikes) {
+		
+		
+		if(nBikes>nStations*nSlots) {
+			System.out.println("numberof bikes must be smaller than the total ammount of parking solts");
+			return;
+		}
+		
+		int bikePerStation = nBikes/nStations;
+		int remainingBikes = nBikes%nStations;
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+		Date beginningDate;
+		try {
+			beginningDate = formatter.parse("01-01-2022");
+		} catch (ParseException e) {
+			beginningDate = new Date();
+			e.printStackTrace();
+		}		
+		
+		//create stations, each are the same
+		
+		int numberofStations = nStations;
+		this.setSide(s);
+		
+		
+		//for each station create random number of parking slots, with random number of bicycle
+		for(int i = 0 ; i < numberofStations; i++) {
+			
+			//each station has between 5 and 25 parking slots
+			Station station = new Station();
+			station.setLocation(new Location(this.getSide()));
+			station.setOnline(true);
+			station.setType((new Random().nextDouble())<0.5 ? StationType.Plus : StationType.Standard);
+			
+			for(int j = 0 ; j< nSlots;j++) {
+				ParkingSlot parkingSlot = new ParkingSlot(station, beginningDate);
+				if(j<nSlots-bikePerStation-remainingBikes) {
+					parkingSlot.setBicycle(null);
+					parkingSlot.setState(ParkingSlotState.FreeToUse);
+					remainingBikes--;
+				}else {
+					parkingSlot.setBicycle((new Random().nextDouble() < 0.5) ? new ElectricalBicycle():new MechanicalBicycle());
+					parkingSlot.setState(ParkingSlotState.Bicycle);
+				}
+				station.addParkingSlot(parkingSlot);
+				
+				
+			}
+			this.addStation(station);			
+		}
+		
+		
+	}
 	
 }
