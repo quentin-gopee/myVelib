@@ -14,7 +14,6 @@ public class User {
 	private CreditCard creditCard;
 	private RegistrationCard registrationCard;
 	private ArrayList<Ride> rides;
-	private double totalCharges;
 	private Ride currentRide;
 	private MyVelib myVelib;
 	
@@ -34,7 +33,6 @@ public class User {
 		this.creditCard = creditCard;
 		this.registrationCard = registrationCard;
 		this.rides = new ArrayList<Ride>();
-		this.totalCharges = 0;
 		this.currentRide = null;
 		this.myVelib = myVelib;
 	}
@@ -90,14 +88,6 @@ public class User {
 
 	public void setRides(ArrayList<Ride> rides) {
 		this.rides = rides;
-	}
-	
-	public double getTotalCharges() {
-		return totalCharges;
-	}
-
-	public void setTotalCharges(double totalCharges) {
-		this.totalCharges = totalCharges;
 	}
 
 	public Ride getCurrentRide() {
