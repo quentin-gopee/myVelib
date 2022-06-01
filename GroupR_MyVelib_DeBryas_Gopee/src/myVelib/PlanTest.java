@@ -39,6 +39,7 @@ class PlanTest {
 	public MyVelib createMyVelib() {
 		
 		MyVelib myVelib = new MyVelib();
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		Date beginningDate;
 		try {
