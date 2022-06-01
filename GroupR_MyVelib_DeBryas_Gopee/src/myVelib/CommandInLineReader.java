@@ -12,37 +12,43 @@ import java.io.IOException;
 public class CommandInLineReader {
 
 	public static String readTextFile(String fileName) {
+		
+		
+		LineToFunction lTF = new LineToFunction();
+		
 		  
-		  String returnValue = "";
-		  FileReader file = null;
-		  BufferedReader reader = null;
+		String returnValue = "";
+		FileReader file = null;
+		BufferedReader reader = null;
 		  
-		  try {
-			  // open input stream pointing at fileName
-			  file = new FileReader(fileName);
+		try {
+			 // open input stream pointing at fileName
+			 file = new FileReader(fileName);
 			  
-			  // open input buffered reader to read file line by line
-			  reader = new BufferedReader(file);
-			  String line = "";
+			 // open input buffered reader to read file line by line
+			 reader = new BufferedReader(file);
+			 String line = "";
 			  
-			  // reading input file line by line
-			  while ((line = reader.readLine()) != null) {
-				  returnValue += line + "\n";
-			  }
-		  } catch (Exception e) {
-		      throw new RuntimeException(e);
-		  } finally {
-		    if (file != null) {
-		      try {
-		        file.close();
-		        reader.close();
+			 // reading input file line by line
+			 while ((line = reader.readLine()) != null) {
+				 returnValue += line + "\n";
+				 lTF.Execute(line);
+				 
+			 }
+		} catch (Exception e) {
+		     throw new RuntimeException(e);
+		} finally {
+		   if (file != null) {
+			   try {
+		       file.close();
+		       reader.close();
 		       
-		      } catch (IOException e) {
-		    	  System.out.println("File not found: " + fileName);
-		        // Ignore issues during closing 
-		      }
-		    }
-		  }
-		  return returnValue;
+		     } catch (IOException e) {
+		    	 System.out.println("File not found: " + fileName);
+		       // Ignore issues during closing 
+		     }
+		   }
 		}
+		return returnValue;
+	}
 }
