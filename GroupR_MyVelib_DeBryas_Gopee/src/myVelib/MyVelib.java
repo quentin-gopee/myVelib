@@ -35,6 +35,9 @@ public class MyVelib {
 	
 	public MyVelib() {
 		super();
+		this.stations = new HashMap<UUID,Station>();
+		this.bicycles = new HashMap<UUID,Bicycle>();
+		this.users = new HashMap<UUID,User>();
 	}
 	
 	
@@ -97,17 +100,8 @@ public class MyVelib {
 	}
 	
 	public void addUser(User user) {
-		this.users.put(user.getID(), user);
+		this.users.put((UUID) user.getID(), user);
 	}
 	
-	
-	/**
-	 * main to create the ecosystem
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		
-		
-	}
 	
 }

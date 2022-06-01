@@ -37,6 +37,7 @@ public class Station {
 	
 	public Station() {
 		this.ID=UUID.randomUUID();
+		this.parkingSlots = new ArrayList<ParkingSlot>();
 	}
 	
 	/**

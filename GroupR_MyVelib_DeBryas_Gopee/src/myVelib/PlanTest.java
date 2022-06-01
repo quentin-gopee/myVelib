@@ -7,10 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
-import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,16 +16,37 @@ class PlanTest {
 	@Test
 	void testClassicPlan() {
 		
+		//crée un plan avec un objet myVelib dedans
 		Plan plan = new Plan(createMyVelib());
-		Collection<User> users = plan.getMyVelib().getUsers().values();
-		ArrayList<User> userS =  (ArrayList<User>)users;
-		Location start = userS.get(new Random().nextInt(50)).getLocation();
+		
+		//prend la liste des utilisateurs de cet objet
+		ArrayList<User> users = new ArrayList<User>(plan.getMyVelib().getUsers().values());
+		
+		//prend un utilisateur et prend ses coordonées
+		Location start = users.get(new Random().nextInt(49)).getLocation();
 		Location end = new Location(plan.getMyVelib().getSide());
 		BicycleType bT = BicycleType.Electrical;
-		Plan.ClassicPlan(start, end, bT);
+		if(new Random().nextDouble()<0.5)bT=BicycleType.Mechanical;
 		
+		try {
+			plan.ClassicPlan(start, end, bT);
+		} catch (Exception e) {
+			System.out.println("function doesn't work");
+			e.printStackTrace();
+		}
 		
-		fail("Not yet implemented");
+		System.out.println(start.toString()+ "  " +end.toString());
+		
+		assertTrue(true);
+	}
+	
+	@Test
+	void testCreateMyVelib() {
+		
+		MyVelib myVelib =  createMyVelib();
+		Plan plan = new Plan(myVelib);
+		assertTrue(plan.getMyVelib().getUsers()==myVelib.getUsers());
+		
 	}
 	
 	
@@ -40,6 +58,7 @@ class PlanTest {
 		
 		MyVelib myVelib = new MyVelib();
 		
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		Date beginningDate;
 		try {
@@ -50,25 +69,21 @@ class PlanTest {
 		}		
 		
 		//create stations, each are the same
-		/**
-		Random r = new Random();
-		return r.nextInt((max - min) + 1) + min;
-		**/
 		
 		int numberofStations = 20;
 		myVelib.setSide(10);
 		
-		Map<UUID,Station> stations =  new HashMap<UUID,Station>();
 		
 		//for each station create random number of parking slots, with random number of bicycle
 		for(int i = 0 ; i < numberofStations; i++) {
+			
 			//each station has between 5 and 25 parking slots
 			Station station = new Station();
 			station.setLocation(new Location(myVelib.getSide()));
 			station.setOnline(true);
 			station.setType((new Random().nextDouble())<0.5 ? StationType.Plus : StationType.Standard);
 			
-			for(int j = 0 ; j< new Random().nextInt(25-5+1)-5;j++) {
+			for(int j = 0 ; j< new Random().nextInt(20)+5;j++) {
 				ParkingSlot parkingSlot = new ParkingSlot(station, beginningDate);
 				if(new Random().nextDouble() < 0.2) {
 					parkingSlot.setBicycle(null);
@@ -81,25 +96,28 @@ class PlanTest {
 				
 				
 			}
-			stations.put(station.getID(),station);
-			
+			myVelib.addStation(station);			
 		}
 		
 		/**
 		 * we create 50 users on this map
 		 */
 		
-		
 		for(int i=0;i<50;i++) {
+			
 			RegistrationCard rC = null;
 			if(new Random().nextDouble() < 0.2) {
 				rC = new NoCard();
-			}else if(new Random().nextDouble() < 0.5) {
-				rC = new Vlibre();
-			}else {
+			}else{
+				if(new Random().nextDouble() < 0.5) {
+					rC = new Vlibre();
+				}else {
 				rC = new Vmax();
+				}
 			}
+			
 			User newuser = new User("Woz",new Location(myVelib.getSide()),new CreditCard(),rC,myVelib);
+			//System.out.println(newuser.toString());
 			myVelib.addUser(newuser);
 		}
 		
