@@ -107,39 +107,6 @@ public class MyVelib {
 	 */
 	public static void main(String[] args) {
 		
-		MyVelib myVelib = new MyVelib();
-		
-		//create stations, each are the same
-		/**
-		Random r = new Random();
-		return r.nextInt((max - min) + 1) + min;
-		**/
-		
-		int numberofStations = 20;
-		myVelib.setSide(10);
-		
-		Map<UUID,Station> stations =  Map.of();
-		//for each station create random number of parking slots, with random number of bicycle
-		for(int i = 0 ; i < numberofStations; i++) {
-			//each station has between 5 and 25 parking slots
-			Station station = new Station();
-			station.setLocation(new Location(myVelib.getSide()));
-			station.setOnline(true);
-			station.setType((new Random().nextDouble())<0.5 ? StationType.Plus : StationType.Standard);
-			
-			for(int j = 0 ; j< new Random().nextInt(25-5+1)-5;j++) {
-				
-			}
-			stations.put(station.getID(),station);
-
-		}
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 	

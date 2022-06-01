@@ -1,5 +1,5 @@
 package myVelib;
-import java.*;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
@@ -20,6 +20,8 @@ public class Plan {
 	
 	public Plan(MyVelib myVelib) {
 		this.myVelib = myVelib;
+		this.startParkingSlot=null;
+		this.endParkingSlot=null;
 	}
 
 	public ParkingSlot getStartParkingSlot() {
@@ -47,7 +49,7 @@ public class Plan {
 	}
 
 	public void ClassicPlan(Location start, Location end, BicycleType type) throws Exception {
-		
+				
 		/**
 		 * checking that location start and location end are valid
 		 */
