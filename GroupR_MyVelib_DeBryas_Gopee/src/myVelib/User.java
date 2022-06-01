@@ -154,8 +154,12 @@ public class User {
 	 * Cancel the current ride
 	 */
 	public void cancelRide() throws Exception {
+		if (currentRide == null) {
+			throw new Exception("No ride planned");
+		}
+		
 		if (currentRide.getState() != RideState.Planned) {
-			throw new Exception("Cannot cancel the ride");
+			throw new Exception("Cannot cancel a ride that has already started");
 		}
 		
 		currentRide.getPlan().getStartParkingSlot().setState(ParkingSlotState.Bicycle);

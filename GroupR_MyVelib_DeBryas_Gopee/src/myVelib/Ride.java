@@ -34,6 +34,8 @@ public class Ride extends History{
 	 */
 	private RideState state;
 	
+	private Date planningTime;
+	
 	/**
 	 * Creates a ride
 	 * @param plan the plan of the ride
@@ -46,6 +48,7 @@ public class Ride extends History{
 		this.user = user;
 		this.bicycle = plan.getStartParkingSlot().getBicycle();
 		this.state = RideState.Planned;
+		this.planningTime = planningTime;
 		plan.getStartParkingSlot().reserveBicycle(user, planningTime);
 		plan.getEndParkingSlot().reserveParkingSlot(user, planningTime);
 	}
@@ -121,6 +124,16 @@ public class Ride extends History{
 	public void setState(RideState state) {
 		this.state = state;
 	}
+	
+
+	public Date getPlanningTime() {
+		return planningTime;
+	}
+
+	public void setPlanningTime(Date planningTime) {
+		this.planningTime = planningTime;
+	}
+	
 
 	/**
 	 * Start the ride
@@ -129,6 +142,10 @@ public class Ride extends History{
 	public void startRide(Date startingTime) throws Exception{
 		if (state != RideState.Planned) {
 			throw new Exception("Ride already started!");
+		}
+		
+		if (startingTime.compareTo(planningTime) < 0) {
+			throw new Exception("Start cannot happen before planning");
 		}
 		
 		plan.getStartParkingSlot().rentBicycle(user, startingTime);
@@ -144,11 +161,18 @@ public class Ride extends History{
 	public void endRide(Date endingTime) throws Exception {
 		if (state == RideState.Planned) {
 			throw new Exception("Ride not started!");
-		} else if (state == RideState.Ended) {
+		} 
+		
+		if (state == RideState.Ended) {
 			throw new Exception("Ride already finished!");
 		}
 		
-		plan.getStartParkingSlot().returnBicycle(user, endingTime);
+		if (endingTime.compareTo(super.getStartingTime()) < 0) {
+			throw new Exception("End cannot happen before start");
+		}
+		
+		state = RideState.Ended;
+		plan.getEndParkingSlot().returnBicycle(user, endingTime);
 		
 		super.setEndingTime(endingTime);
 		
