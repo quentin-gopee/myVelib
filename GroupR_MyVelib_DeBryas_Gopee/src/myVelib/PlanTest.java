@@ -17,7 +17,9 @@ class PlanTest {
 	void testClassicPlan() {
 		
 		//crée un plan avec un objet myVelib dedans
-		Plan plan = new Plan(createMyVelib());
+		MyVelib mV = new MyVelib();
+		mV.createMyVelib();
+		Plan plan = new Plan(mV);
 		
 		//prend la liste des utilisateurs de cet objet
 		ArrayList<User> users = new ArrayList<User>(plan.getMyVelib().getUsers().values());
@@ -35,20 +37,32 @@ class PlanTest {
 			e.printStackTrace();
 		}
 		
-		System.out.println(start.toString() + "  " +end.toString() + " "
-		+ plan.getStartParkingSlot().getStation().getLocation().toString()
-		+ " "+ plan.getEndParkingSlot().getStation().getLocation().toString());
+		ArrayList<Station> stations = new ArrayList<Station>(plan.getMyVelib().getStations().values());
 		
-		assertTrue(true);
-	}
+		
+		//check that the starting station is the nearest from the depart point
+		for(Station s : stations) {
+			assertTrue(start.distance(plan.getStartParkingSlot().getStation().getLocation()) <= start.distance(s.getLocation()) );
+		}
+		
+		
+		//check that the endingStation is the nearest from the ending point
+		for(Station s : stations) {
+			assertTrue(end.distance(plan.getEndParkingSlot().getStation().getLocation()) <= end.distance(s.getLocation()) );
+		}
+		
+		
+	}	
 	
 	@Test
-	void testCreateMyVelib() {
+	void iftheNearestStationIsFullgoToAnOtherOne() {
 		
-		MyVelib myVelib =  createMyVelib();
-		Plan plan = new Plan(myVelib);
-		assertTrue(plan.getMyVelib().getUsers()==myVelib.getUsers());
-		
+		//crée un plan avec un objet myVelib dedans
+				MyVelib mV = new MyVelib();
+				mV.createMyVelib();
+				Plan plan = new Plan(mV);
+				
+				
 	}
 	
 
