@@ -192,5 +192,10 @@ public class ParkingSlot {
 		this.setState(ParkingSlotState.ReservedBicycle);
 		this.setLastChangeDate(newDate);
 	}
+
+	@Override
+	public String toString() {
+		return "ParkingSlot [station=" + station.getID() + ", ID=" + ID + ", state=" + state + "]";
+	}
 }
 	

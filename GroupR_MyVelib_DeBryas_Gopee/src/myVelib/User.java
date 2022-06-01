@@ -36,6 +36,17 @@ public class User {
 		this.currentRide = null;
 		this.myVelib = myVelib;
 	}
+	
+	public User(UUID ID, String name, Location location, CreditCard creditCard, RegistrationCard registrationCard, MyVelib myVelib) {
+		this.ID = ID;
+		this.name = name;
+		this.location = location;
+		this.creditCard = creditCard;
+		this.registrationCard = registrationCard;
+		this.rides = new ArrayList<Ride>();
+		this.currentRide = null;
+		this.myVelib = myVelib;
+	}
 
 	
 	/**
@@ -164,5 +175,10 @@ public class User {
 	 */
 	public void addRide(Ride ride) {
 		this.rides.add(ride);
+	}
+
+	@Override
+	public String toString() {
+		return "User [ID=" + ID + ", name=" + name + ", location=" + location + "]";
 	}
 }

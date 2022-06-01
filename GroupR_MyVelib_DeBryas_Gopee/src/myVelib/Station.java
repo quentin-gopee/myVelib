@@ -88,6 +88,10 @@ public class Station {
 	public void addParkingSlot(ParkingSlot ps) {
 		parkingSlots.add(ps);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "Station [ID=" + ID + ", location=" + location + ", type=" + type + ", online=" + online + "]";
+	}
 }
 
