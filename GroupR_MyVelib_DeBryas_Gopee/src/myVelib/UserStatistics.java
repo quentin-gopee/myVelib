@@ -8,12 +8,7 @@ import java.util.ArrayList;
  *
  */
 
-public class UserStatistics extends Statistics{
-
-	public UserStatistics(MyVelib myVelib) {
-		super(myVelib);
-	}
-	
+public class UserStatistics {	
 	
 	/**
 	 * Methods

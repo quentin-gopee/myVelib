@@ -10,26 +10,33 @@ import java.util.ArrayList;
 
 public class Statistics {
 
-	private MyVelib myVelib;
+	private UserStatistics uStats;
+	private StationStatistics sStats;
 
 	/**
 	 * constructor
-	 * @param myVelib
 	 */
-	public Statistics(MyVelib myVelib) {
-		super();
-		this.myVelib = myVelib;
+	public Statistics() {
+		uStats = new UserStatistics();;
+		sStats = new StationStatistics();
 	}
 
 	/*
 	 * getters & setters
 	 */
-	public MyVelib getMyVelib() {
-		return myVelib;
+	public UserStatistics getuStats() {
+		return uStats;
 	}
 
-	public void setMyVelib(MyVelib myVelib) {
-		this.myVelib = myVelib;
+	public void setuStats(UserStatistics uStats) {
+		this.uStats = uStats;
 	}
-	
+
+	public StationStatistics getsStats() {
+		return sStats;
+	}
+
+	public void setsStats(StationStatistics sStats) {
+		this.sStats = sStats;
+	}	
 }
