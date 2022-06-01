@@ -34,13 +34,14 @@ public class LineToFunction {
 	 * @throws Exception
 	 */
 	public void Execute(String line) throws Exception {
-		String[] parts = line.split("");
+		String[] parts = line.split(" ");
 		
 		if (parts[0] == "setup") {
 			if (parts.length == 2) {
 				MyVelib myVelib = new MyVelib();
 				myVelib.setUp(10, 10, 4, 75);
 				myVelibs.put(parts[1], myVelib);
+				System.out.println("setup done");
 			} else if (parts.length == 6) {
 				MyVelib myVelib = new MyVelib();
 				myVelib.setUp(Integer.valueOf(parts[2]), Integer.valueOf(parts[3]), Integer.valueOf(parts[4]), Integer.valueOf(parts[5]));
@@ -173,6 +174,10 @@ public class LineToFunction {
 			} else {
 				throw new Exception("invalid command");
 			}
+		}
+		
+		else {
+			throw new Exception("invalid command");
 		}
 	}
 }
