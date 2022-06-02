@@ -19,14 +19,13 @@ addUser Paul NoCard myVelibRunTest a41733ff-5169-4a5d-a3f9-2d4a62bc9b5e
 addUser Chris NoCard myVelibRunTest 7aeee29c-7826-43c8-a2bd-1d941f624079
 addUser Marlon NoCard myVelibRunTest 31cbf561-fcc8-499b-a4c0-cfb2c68a0eee
 addUser Mylene NoCard myVelibRunTest 3cb0b072-0cbc-4be3-91c5-02a51920b8bd
-
 planClassicRide dfa6ee68-24d1-4f76-b431-a394c6841f88 3.0 2.7 Mechanical 2022 01 01 8 25 myVelibRunTest
 startRide dfa6ee68-24d1-4f76-b431-a394c6841f88 2022 01 01 8 35 myVelibRunTest
 endRide dfa6ee68-24d1-4f76-b431-a394c6841f88 2022 01 01 8 51 myVelibRunTest
 planClassicRide 3cb0b072-0cbc-4be3-91c5-02a51920b8bd 1.0 1.1 Mechanical 2022 01 01 9 12 myVelibRunTest
 startRide 3cb0b072-0cbc-4be3-91c5-02a51920b8bd 2022 01 01 9 35 myVelibRunTest
 endRide 3cb0b072-0cbc-4be3-91c5-02a51920b8bd 2022 01 01 9 40 myVelibRunTest
-planClassicRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 0.2 4.7 Electrical 2022 01 02 1 8 myVelibRunTest
+planClassicRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 0.2 2.7 Electrical 2022 01 02 1 8 myVelibRunTest
 startRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 02 1 10 myVelibRunTest
 endRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 02 1 48 myVelibRunTest
 planClassicRide 3cb0b072-0cbc-4be3-91c5-02a51920b8bd 3.1 2.6 Mechanical 2022 01 02 7 25 myVelibRunTest
@@ -50,7 +49,6 @@ endRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 03 11 31 myVelibRunTest
 planClassicRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 0.2 3.7 Mechanical 2022 01 03 14 0 myVelibRunTest
 startRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 03 14 5 myVelibRunTest
 endRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 03 14 19 myVelibRunTest
-
 displayUser myVelibRunTest dfa6ee68-24d1-4f76-b431-a394c6841f88
 displayUser myVelibRunTest 731649eb-a2f4-45ab-96ca-7e03e0a18228
 displayUser myVelibRunTest 9bd135f4-4269-4026-9029-78f4ed38d0ba
@@ -71,8 +69,6 @@ displayUser myVelibRunTest a41733ff-5169-4a5d-a3f9-2d4a62bc9b5e
 displayUser myVelibRunTest 7aeee29c-7826-43c8-a2bd-1d941f624079
 displayUser myVelibRunTest 31cbf561-fcc8-499b-a4c0-cfb2c68a0eee
 displayUser myVelibRunTest 3cb0b072-0cbc-4be3-91c5-02a51920b8bd
-
 sortStation myVelibRunTest leastOccupied
 sortStation myVelibRunTest mostUsed
-
 display myVelibRunTest
