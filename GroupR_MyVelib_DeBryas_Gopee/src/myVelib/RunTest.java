@@ -32,6 +32,7 @@ public class RunTest {
 			 // reading input file line by line
 			 while ((line = reader.readLine()) != null) {
 				 try {
+					 System.out.println(line);
 					 lTF.Execute(line);
 				 } catch (Exception e) {
 					 e.printStackTrace();
