@@ -29,7 +29,7 @@ endRide 3cb0b072-0cbc-4be3-91c5-02a51920b8bd 2022 01 01 9 40 myVelibRunTest
 planClassicRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 0.2 4.7 Electrical 2022 01 02 1 8 myVelibRunTest
 startRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 02 1 10 myVelibRunTest
 endRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 02 1 48 myVelibRunTest
-planClassicRide 3cb0b072-0cbc-4be3-91c5-02a51920b8bd 3.1 4.6 Mechanical 2022 01 02 7 25 myVelibRunTest
+planClassicRide 3cb0b072-0cbc-4be3-91c5-02a51920b8bd 3.1 2.6 Mechanical 2022 01 02 7 25 myVelibRunTest
 startRide 3cb0b072-0cbc-4be3-91c5-02a51920b8bd 2022 01 02 7 31 myVelibRunTest
 endRide 3cb0b072-0cbc-4be3-91c5-02a51920b8bd 2022 01 02 8 7 myVelibRunTest
 planClassicRide 9bd135f4-4269-4026-9029-78f4ed38d0ba 1.5 1.9 Electrical 2022 01 02 10 10 myVelibRunTest
