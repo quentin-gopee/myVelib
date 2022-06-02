@@ -75,3 +75,4 @@ displayUser myVelibRunTest 3cb0b072-0cbc-4be3-91c5-02a51920b8bd
 sortStation myVelibRunTest leastOccupied
 sortStation myVelibRunTest mostUsed
 
+display myVelibRunTest
