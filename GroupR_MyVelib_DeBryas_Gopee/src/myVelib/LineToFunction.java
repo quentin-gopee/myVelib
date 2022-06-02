@@ -18,17 +18,19 @@ public class LineToFunction {
 	 * Handle the following commands:
 	 * setup <velibnetworkName>
 	 * setup <name> <nstations> <nslots> <s> <nbikes>
-	 * addUser <userName,cardType, velibnetworkName>
-	 * addUser <userName,cardType, velibnetworkName, ID>
-	 * offline <velibnetworkName, stationID>
-	 * online <velibnetworkName, stationID>
-	 * planClassicRide <userID, destinationX, destinationY, bicycleType, year, month, day, hour, minutes, velibnetworkName>
-	 * startRide <userID, year, month, day, hour, minutes, velibnetworkName>
-	 * endRide <userID, year, month, day, hour, minutes, velibnetworkName>
-	 * cancelRide <userID, velibnetworkName>
-	 * displayStation <velibnetworkName, stationID>
-	 * displayUser <velibnetworkName, userID>
-	 * sortStation <velibnetworkName, sortpolicy>
+	 * addUser <userName> <cardType> <velibnetworkName>
+	 * addUser <userName> <cardType> <velibnetworkName> <ID>
+	 * addStation <locationX> <locationY> <type> <nslots> <nbikes> <creationDate> <velibnetworkName>
+	 * addStation <locationX> <locationY> <type> <nslots> <nbikes> <creationDate> <velibnetworkName> <ID>
+	 * offline <velibnetworkName> <stationID>
+	 * online <velibnetworkName> <stationID>
+	 * planClassicRide <userID> <destinationX> <destinationY> <bicycleType> <year> <month> <day> <hour> <minutes> <velibnetworkName>
+	 * startRide <userID> <year> <month> <day> <hour> <minutes> <velibnetworkName>
+	 * endRide <userID> <year> <month> <day> <hour> <minutes> <velibnetworkName>
+	 * cancelRide <userID> <velibnetworkName>
+	 * displayStation <velibnetworkName> <stationID>
+	 * displayUser <velibnetworkName> <userID>
+	 * sortStation <velibnetworkName> <sortpolicy>
 	 * display <velibnetworkName>
 	 * display
 	 * 
@@ -80,6 +82,32 @@ public class LineToFunction {
 					System.out.println("User " + parts[1] + " added");
 				} else {
 					throw new Exception("invalid type of card");
+				}
+			} else {
+				throw new Exception("invalid command");
+			}
+		}
+		
+		else if (parts[0].equals("addStation")) {
+			if (parts.length == 8) {
+				if (parts[3].equals("Standard")) {
+					myVelibs.get(parts[7]).addStation(new Station());
+					System.out.println("Station added");
+				} else if (parts[3].equals("Plus")) {
+					myVelibs.get(parts[7]).addStation(new Station());
+					System.out.println("Station added");
+				} else {
+					throw new Exception("invalid type of station");
+				}
+			} else if (parts.length == 9) {
+				if (parts[3].equals("Standard")) {
+					myVelibs.get(parts[7]).addStation(new Station());
+					System.out.println("Station added");
+				} else if (parts[3].equals("Plus")) {
+					myVelibs.get(parts[7]).addStation(new Station());
+					System.out.println("Station added");
+				} else {
+					throw new Exception("invalid type of station");
 				}
 			} else {
 				throw new Exception("invalid command");
