@@ -20,8 +20,8 @@ public class LineToFunction {
 	 * setup <name> <nstations> <nslots> <s> <nbikes>
 	 * addUser <userName> <cardType> <velibnetworkName>
 	 * addUser <userName> <cardType> <velibnetworkName> <ID>
-	 * addStation <locationX> <locationY> <type> <nslots> <nbikes> <creationDate> <velibnetworkName>
-	 * addStation <locationX> <locationY> <type> <nslots> <nbikes> <creationDate> <velibnetworkName> <ID>
+	 * addStation <locationX> <locationY> <type> <nslots> <nbikes> <year> <month> <day> <hour> <minutes> <velibnetworkName>
+	 * addStation <locationX> <locationY> <type> <nslots> <nbikes> <year> <month> <day> <hour> <minutes> <velibnetworkName> <ID>
 	 * offline <velibnetworkName> <stationID>
 	 * online <velibnetworkName> <stationID>
 	 * planClassicRide <userID> <destinationX> <destinationY> <bicycleType> <year> <month> <day> <hour> <minutes> <velibnetworkName>
@@ -89,22 +89,24 @@ public class LineToFunction {
 		}
 		
 		else if (parts[0].equals("addStation")) {
-			if (parts.length == 8) {
+			if (parts.length == 12) {
+				Date creationDate = new Date(Integer.valueOf(parts[6]), Integer.valueOf(parts[7]), Integer.valueOf(parts[8]), Integer.valueOf(parts[9]), Integer.valueOf(parts[10]));
 				if (parts[3].equals("Standard")) {
-					myVelibs.get(parts[7]).addStation(new Station());
+					myVelibs.get(parts[11]).addStation(new Station(new Location(Double.parseDouble(parts[1]), Double.parseDouble(parts[2])), StationType.Standard, true, Integer.valueOf(parts[4]), Integer.valueOf(parts[5]), creationDate));
 					System.out.println("Station added");
 				} else if (parts[3].equals("Plus")) {
-					myVelibs.get(parts[7]).addStation(new Station());
+					myVelibs.get(parts[11]).addStation(new Station(new Location(Double.parseDouble(parts[1]), Double.parseDouble(parts[2])), StationType.Plus, true, Integer.valueOf(parts[4]), Integer.valueOf(parts[5]), creationDate));
 					System.out.println("Station added");
 				} else {
 					throw new Exception("invalid type of station");
 				}
-			} else if (parts.length == 9) {
+			} else if (parts.length == 13) {
+				Date creationDate = new Date(Integer.valueOf(parts[6]), Integer.valueOf(parts[7]), Integer.valueOf(parts[8]), Integer.valueOf(parts[9]), Integer.valueOf(parts[10]));
 				if (parts[3].equals("Standard")) {
-					myVelibs.get(parts[7]).addStation(new Station());
+					myVelibs.get(parts[11]).addStation(new Station(UUID.fromString(parts[12]), new Location(Double.parseDouble(parts[1]), Double.parseDouble(parts[2])), StationType.Standard, true, Integer.valueOf(parts[4]), Integer.valueOf(parts[5]), creationDate));
 					System.out.println("Station added");
 				} else if (parts[3].equals("Plus")) {
-					myVelibs.get(parts[7]).addStation(new Station());
+					myVelibs.get(parts[11]).addStation(new Station(UUID.fromString(parts[12]), new Location(Double.parseDouble(parts[1]), Double.parseDouble(parts[2])), StationType.Plus, true, Integer.valueOf(parts[4]), Integer.valueOf(parts[5]), creationDate));
 					System.out.println("Station added");
 				} else {
 					throw new Exception("invalid type of station");
