@@ -139,6 +139,7 @@ public class User {
 	 */
 	public void startRide(Date startingTime) throws Exception {
 		currentRide.startRide(startingTime);
+		location = currentRide.getPlan().getStartParkingSlot().getStation().getLocation();
 	}
 	
 	/**
@@ -148,6 +149,7 @@ public class User {
 	 */
 	public void endRide(Date endingTime) throws Exception {
 		currentRide.endRide(endingTime);
+		location = currentRide.getPlan().getEndParkingSlot().getStation().getLocation();
 		currentRide = null;
 	}
 	

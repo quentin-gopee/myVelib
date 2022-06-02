@@ -9,9 +9,9 @@ import java.io.IOException;
  * @author Quentin
  *
  */
-public class CommandInLineReader {
+public class RunTest {
 
-	public static String readTextFile(String fileName) {
+	public static void main (String[] args) {
 		
 		
 		LineToFunction lTF = new LineToFunction();
@@ -23,7 +23,7 @@ public class CommandInLineReader {
 		  
 		try {
 			 // open input stream pointing at fileName
-			 file = new FileReader(fileName);
+			 file = new FileReader(args[0]);
 			  
 			 // open input buffered reader to read file line by line
 			 reader = new BufferedReader(file);
@@ -31,8 +31,11 @@ public class CommandInLineReader {
 			  
 			 // reading input file line by line
 			 while ((line = reader.readLine()) != null) {
-				 returnValue += line + "\n";
-				 lTF.Execute(line);
+				 try {
+					 lTF.Execute(line);
+				 } catch (Exception e) {
+					 e.printStackTrace();
+				 }
 				 
 			 }
 		} catch (Exception e) {
@@ -44,11 +47,10 @@ public class CommandInLineReader {
 		       reader.close();
 		       
 		     } catch (IOException e) {
-		    	 System.out.println("File not found: " + fileName);
+		    	 System.out.println("File not found: " + args[0]);
 		       // Ignore issues during closing 
 		     }
 		   }
 		}
-		return returnValue;
 	}
 }

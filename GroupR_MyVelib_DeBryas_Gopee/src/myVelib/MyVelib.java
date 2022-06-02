@@ -40,6 +40,7 @@ public class MyVelib {
 		this.stations = new HashMap<UUID,Station>();
 		this.bicycles = new HashMap<UUID,Bicycle>();
 		this.users = new HashMap<UUID,User>();
+		this.statistics = new Statistics();
 	}
 	
 	
