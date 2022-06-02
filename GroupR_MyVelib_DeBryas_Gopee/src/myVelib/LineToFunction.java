@@ -162,7 +162,7 @@ public class LineToFunction {
 		
 		else if (parts[0].equals("displayUser")) {
 			if (parts.length == 3) {
-				System.out.println("User " + myVelibs.get(parts[1]).getUsers().get(UUID.fromString(parts[1])).getName() + ":");
+				System.out.println("User " + myVelibs.get(parts[1]).getUsers().get(UUID.fromString(parts[2])).getName() + ":");
 				System.out.println("number of rides: " + myVelibs.get(parts[1]).getStatistics().getuStats().numberOfRides(myVelibs.get(parts[1]).getUsers().get(UUID.fromString(parts[2]))));
 				System.out.println("total time spent on a bike: " + myVelibs.get(parts[1]).getStatistics().getuStats().totalTimeSpentOnABike(myVelibs.get(parts[1]).getUsers().get(UUID.fromString(parts[2]))));
 				System.out.println("total charges: " + myVelibs.get(parts[1]).getStatistics().getuStats().totalAmmountofCharges(myVelibs.get(parts[1]).getUsers().get(UUID.fromString(parts[2]))));
