@@ -16,14 +16,12 @@ public class RunTest {
 		
 		LineToFunction lTF = new LineToFunction();
 		
-		  
-		String returnValue = "";
 		FileReader file = null;
 		BufferedReader reader = null;
 		  
 		try {
 			 // open input stream pointing at fileName
-			 file = new FileReader("Run Test");
+			 file = new FileReader("RunTest");
 			  
 			 // open input buffered reader to read file line by line
 			 reader = new BufferedReader(file);
@@ -31,13 +29,13 @@ public class RunTest {
 			  
 			 // reading input file line by line
 			 while ((line = reader.readLine()) != null) {
+				 System.out.println(line);
 				 try {
-					 System.out.println(line);
 					 lTF.Execute(line);
 				 } catch (Exception e) {
-					 System.out.println(line);
 					 e.printStackTrace();
 				 }
+				 System.out.println();
 				 
 			 }
 		} catch (Exception e) {

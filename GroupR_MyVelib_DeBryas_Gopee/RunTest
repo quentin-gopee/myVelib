@@ -51,6 +51,8 @@ endRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 04 11 31 myVelibRunTest
 planClassicRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 0.2 3.7 Mechanical 2022 01 04 14 0 myVelibRunTest
 startRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 04 14 5 myVelibRunTest
 endRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 04 14 19 myVelibRunTest
+planClassicRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 1.3 3.0 Mechanical 2022 01 05 14 0 myVelibRunTest
+cancelRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf myVelibRunTest
 displayUser myVelibRunTest dfa6ee68-24d1-4f76-b431-a394c6841f88
 displayUser myVelibRunTest 731649eb-a2f4-45ab-96ca-7e03e0a18228
 displayUser myVelibRunTest 9bd135f4-4269-4026-9029-78f4ed38d0ba
