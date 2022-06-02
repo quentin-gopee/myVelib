@@ -35,6 +35,7 @@ public class RunTest {
 					 System.out.println(line);
 					 lTF.Execute(line);
 				 } catch (Exception e) {
+					 System.out.println(line);
 					 e.printStackTrace();
 				 }
 				 
