@@ -108,10 +108,10 @@ public class LineToFunction {
 			if (parts.length == 11) {
 				Date planningTime = new Date(Integer.valueOf(parts[5]), Integer.valueOf(parts[6]), Integer.valueOf(parts[7]), Integer.valueOf(parts[8]), Integer.valueOf(parts[9]));
 				if (parts[4].equals("Mechanical")) {
-					myVelibs.get(parts[10]).getUsers().get(UUID.fromString(parts[1])).planClassicRide(new Location(Integer.valueOf(parts[2]), Integer.valueOf(parts[3])), BicycleType.Mechanical, planningTime);
+					myVelibs.get(parts[10]).getUsers().get(UUID.fromString(parts[1])).planClassicRide(new Location(Double.parseDouble(parts[2]), Double.parseDouble(parts[3])), BicycleType.Mechanical, planningTime);
 					System.out.println("New ride planned for user " + myVelibs.get(parts[10]).getUsers().get(UUID.fromString(parts[1])).getName());
 				} else if (parts[4].equals("Electrical")) {
-					myVelibs.get(parts[10]).getUsers().get(UUID.fromString(parts[1])).planClassicRide(new Location(Integer.valueOf(parts[2]), Integer.valueOf(parts[3])), BicycleType.Electrical, planningTime);
+					myVelibs.get(parts[10]).getUsers().get(UUID.fromString(parts[1])).planClassicRide(new Location(Double.parseDouble(parts[2]), Double.parseDouble(parts[3])), BicycleType.Electrical, planningTime);
 					System.out.println("New ride planned for user " + myVelibs.get(parts[10]).getUsers().get(UUID.fromString(parts[1])).getName());
 				} else {
 					throw new Exception("invalid bike type");

@@ -23,7 +23,7 @@ public class RunTest {
 		  
 		try {
 			 // open input stream pointing at fileName
-			 file = new FileReader(args[0]);
+			 file = new FileReader("Run Test");
 			  
 			 // open input buffered reader to read file line by line
 			 reader = new BufferedReader(file);
