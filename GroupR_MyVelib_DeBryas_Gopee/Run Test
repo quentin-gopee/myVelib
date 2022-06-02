@@ -1,4 +1,6 @@
 setup myVelibRunTest 10 10 4 75
+addStation 3.0 2.7 Plus 10 7 2022 01 01 01 57 myVelibRunTest 284eb43b-b4c6-4715-b60a-c84b79327bf8
+addStation 2.0 2.9 Standard 10 6 2022 01 01 01 59 myVelibRunTest eddc01dd-53c5-4666-baa8-60695d892427
 addUser John Vmax myVelibRunTest dfa6ee68-24d1-4f76-b431-a394c6841f88
 addUser Cindy Vmax myVelibRunTest 731649eb-a2f4-45ab-96ca-7e03e0a18228
 addUser Max Vmax myVelibRunTest 9bd135f4-4269-4026-9029-78f4ed38d0ba
@@ -71,4 +73,6 @@ displayUser myVelibRunTest 31cbf561-fcc8-499b-a4c0-cfb2c68a0eee
 displayUser myVelibRunTest 3cb0b072-0cbc-4be3-91c5-02a51920b8bd
 sortStation myVelibRunTest leastOccupied
 sortStation myVelibRunTest mostUsed
+displayStation myVelibRunTest 284eb43b-b4c6-4715-b60a-c84b79327bf8
+displayStation myVelibRunTest eddc01dd-53c5-4666-baa8-60695d892427
 display myVelibRunTest
