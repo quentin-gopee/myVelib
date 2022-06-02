@@ -41,6 +41,71 @@ public class Station {
 		this.online=true;
 	}
 	
+	public Station(UUID ID, Location location, StationType type, boolean online, int numberParkingSlots, int numberBicycles, Date date) {
+		this.ID=ID;
+		this.parkingSlots = new ArrayList<ParkingSlot>();
+		this.location = location;
+		this.type = type;
+		this.online = online;
+		
+		if(numberBicycles>numberParkingSlots) {
+			System.out.println("number of bikes must be inferior than the number of parking slots");
+			numberBicycles=numberParkingSlots;
+		}
+		
+		
+		for(int j = 0 ; j< numberParkingSlots;j++) {
+			ParkingSlot parkingSlot = new ParkingSlot(this, date);
+			Bicycle newBicycle = (new Random().nextDouble() < 0.5) ? new ElectricalBicycle():new MechanicalBicycle();
+			
+			if(numberBicycles>0) {
+				parkingSlot.setBicycle(newBicycle);
+				parkingSlot.setState(ParkingSlotState.Bicycle);
+				parkingSlot.setLastChangeDate(date);
+				numberBicycles--;
+			}else {
+				parkingSlot.setBicycle(null);
+				parkingSlot.setState(ParkingSlotState.FreeToUse);
+				parkingSlot.setLastChangeDate(date);
+			}
+			
+			this.addParkingSlot(parkingSlot);
+		}
+	}
+
+	
+	public Station(Location location, StationType type, boolean online, int numberParkingSlots, int numberBicycles, Date date) {
+		this.ID=UUID.randomUUID();
+		this.parkingSlots = new ArrayList<ParkingSlot>();
+		this.location = location;
+		this.type = type;
+		this.online = online;
+		
+		if(numberBicycles>numberParkingSlots) {
+			System.out.println("number of bikes must be inferior than the number of parking slots");
+			numberBicycles=numberParkingSlots;
+		}
+		
+		
+		for(int j = 0 ; j< numberParkingSlots;j++) {
+			ParkingSlot parkingSlot = new ParkingSlot(this, date);
+			Bicycle newBicycle = (new Random().nextDouble() < 0.5) ? new ElectricalBicycle():new MechanicalBicycle();
+			
+			if(numberBicycles>0) {
+				parkingSlot.setBicycle(newBicycle);
+				parkingSlot.setState(ParkingSlotState.Bicycle);
+				parkingSlot.setLastChangeDate(date);
+				numberBicycles--;
+			}else {
+				parkingSlot.setBicycle(null);
+				parkingSlot.setState(ParkingSlotState.FreeToUse);
+				parkingSlot.setLastChangeDate(date);
+			}
+			
+			this.addParkingSlot(parkingSlot);
+		}
+	}
+	
 	/**
 	 * getters & setters
 	 * @return
@@ -93,5 +158,6 @@ public class Station {
 	public String toString() {
 		return "Station [ID=" + ID + ", location=" + location + ", type=" + type + ", online=" + online + "]";
 	}
+	
 }
 

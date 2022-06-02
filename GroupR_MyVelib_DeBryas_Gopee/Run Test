@@ -9,7 +9,7 @@ addUser Gordon Vmax myVelibRunTest 77bf1155-eae3-457e-b830-64aeac70e22e
 addUser Alexandra Vlibre myVelibRunTest ad0556b1-33a2-4393-b604-e71e11bb2eec
 addUser Michelle Vlibre myVelibRunTest b0005aa6-f7a1-46a1-a5bb-652a0bbb6963
 addUser Quentin Vlibre myVelibRunTest 93790c4a-48d6-4be7-939b-559b409e35fc
-addUser amber Vlibre myVelibRunTest 4c9ce0ce-84ff-4f78-adb5-f6465177e8f5
+addUser Amber Vlibre myVelibRunTest 4c9ce0ce-84ff-4f78-adb5-f6465177e8f5
 addUser Jehan Vlibre myVelibRunTest 5137c12b-f4b8-44d1-a310-7db724d9fb6f
 addUser Margot Vlibre myVelibRunTest fb9208d4-7ea4-408a-9314-111a46d04d03
 addUser Nathalie Vlibre myVelibRunTest 19f52e4a-2303-4be3-9ee7-886e2a52c3e2
@@ -41,14 +41,14 @@ planClassicRide 7aeee29c-7826-43c8-a2bd-1d941f624079 3.9 1.3 Mechanical 2022 01 
 startRide 7aeee29c-7826-43c8-a2bd-1d941f624079 2022 01 03 17 1 myVelibRunTest
 endRide 7aeee29c-7826-43c8-a2bd-1d941f624079 2022 01 03 17 28 myVelibRunTest
 planClassicRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 0.9 0.7 Mechanical 2022 01 04 7 21 myVelibRunTest
-startRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 03 7 37 myVelibRunTest
-endRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 03 7 43 myVelibRunTest
-planClassicRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2.0 2.9 Electrical 2022 01 03 11 13 myVelibRunTest
-startRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 03 11 14 myVelibRunTest
-endRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 03 11 31 myVelibRunTest
-planClassicRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 0.2 3.7 Mechanical 2022 01 03 14 0 myVelibRunTest
-startRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 03 14 5 myVelibRunTest
-endRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 03 14 19 myVelibRunTest
+startRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 04 7 37 myVelibRunTest
+endRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 04 7 43 myVelibRunTest
+planClassicRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2.0 2.9 Electrical 2022 01 04 11 13 myVelibRunTest
+startRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 04 11 14 myVelibRunTest
+endRide 37e52992-9b4d-4262-bef7-7729d1aca7cc 2022 01 04 11 31 myVelibRunTest
+planClassicRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 0.2 3.7 Mechanical 2022 01 04 14 0 myVelibRunTest
+startRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 04 14 5 myVelibRunTest
+endRide 58879cf0-05d9-4347-8e70-e98c7dcc38bf 2022 01 04 14 19 myVelibRunTest
 displayUser myVelibRunTest dfa6ee68-24d1-4f76-b431-a394c6841f88
 displayUser myVelibRunTest 731649eb-a2f4-45ab-96ca-7e03e0a18228
 displayUser myVelibRunTest 9bd135f4-4269-4026-9029-78f4ed38d0ba
